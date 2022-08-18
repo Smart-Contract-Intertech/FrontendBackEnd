@@ -2,6 +2,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./loginned.scss";
 import Chart from "../../components/chart/Chart";
+import TradingViewWidget, {Themes} from "react-tradingview-widget";
 
 const Loginned = () => {
   window.ethereum.on('accountsChanged', async () => {
@@ -16,7 +17,7 @@ const Loginned = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="charts">
-          <Chart title="Eterheum Grafiği" aspect={2 / 1} />
+          <TradingViewWidget symbol="BINANCE:ETHUSDT" theme={Themes.LIGHT} locale="en" />
         </div>
       </div>
     </div>
