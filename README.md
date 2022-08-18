@@ -1,11 +1,11 @@
 # Smart-Contract-Frontend
 
-Çalıştırmak için.
+Çalıştırmak için. <br/>
 
-npm install
-cd smart-contract
-npm install
-cd ..
-cd Dashboard
-npm install
-npm run start
+npm install <br/>
+cd smart-contract <br/>
+npm install <br/>
+cd .. <br/>
+cd Dashboard <br/> 
+npm install <br/> 
+npm run start <br/>
