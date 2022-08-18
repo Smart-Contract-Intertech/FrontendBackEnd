@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+form{
+  background-color: white;
+  padding: 90px 60px;
+  border-radius: 10px;
+}
+
+#walletAddress{
+  background-image: url(image/Logo.png);
+  position: left;
+  padding-left: 300px;
+  background-size: 200px;
+}
+/*
+[title~=WalletAddress] {
+  background-image: url(image/Logo.png);
+  background-position: left;  
+  background-size:30px;
+  background-repeat: no-repeat;
+  align-items: center;
+  align-content: center;
+}
+*/
+#moneyConversion{
+  width:  500px;
+  color: black;
+  padding-right: 50px;
+  border: red;
+}
+
+#etheryumUnitOptions{
+display: none;
+}
+
+#listGrupHorizantal{
+  border: #282c34 solid 1px;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+#showAmount{
+margin-right: 150px;
+}
+
+#devamButton{
+  width: 20%;
+  height: 60px;
+  background-color: rgba(167, 100, 252,0.6);
+  border:none;
+  color:black; 
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

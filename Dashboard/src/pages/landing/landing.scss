@@ -1,0 +1,22 @@
+body{
+  color: #9980EC;
+  font-family: sans-serif-medium;
+  align-items: center;
+}
+
+button{
+  color: white;
+  background-color: #9980EC;
+  transition:'ease background-color 250ms';
+  margin: 10px 0px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px gray;
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: #9980EC;
+}
+
+button:hover{
+  opacity: 0.8;
+  transform: scale(1.01);
+}
