@@ -1,6 +1,7 @@
 import NotLoginned from "../notloginned/NotLoginned";
 import Loginned from "../loginned/Loginned";
 import { Web3Provider, wallet } from "ethers-react";
+import Transactions  from "../../components/Transactions";
 import Welcome from "../../components/Welcome";
 const Send = () => {
   window.ethereum.on('accountsChanged', async () => {
@@ -19,7 +20,11 @@ const Send = () => {
   console.log(isUnlocked().signer);
 */
   return (
+    <div>
     <Welcome/>
+    <Transactions></Transactions>
+    </div>
+    
   );
 };
 
