@@ -18,7 +18,7 @@ const createEthereumContract = () => {
 
 export const TransactionsProvider = ({ children }) => {
   console.log("testesttes");
-  const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "",date:"" });
+  const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
@@ -108,9 +108,8 @@ export const TransactionsProvider = ({ children }) => {
 
   const sendTransaction = async () => {
     try {
-      
       if (ethereum) {
-        const { addressTo, amount, keyword, message ,date} = formData;
+        const { addressTo, amount, keyword, message } = formData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 

@@ -23,15 +23,11 @@ const Welcome = () => {
 
   const handleSubmit = (e) => {
     //console.log(e)
- 
-    const { addressTo, amount, keyword, message ,date} = formData;
-
-    console.log("Gonderilecek Tarih: "+date)
-
+    const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
 
-    if (!addressTo || !amount || !keyword || ! !date) return;
+    if (!addressTo || !amount || !keyword || !message) return;
       console.log("aaaaaaaaaaaaaaaaaaaa");
       sendTransaction();
   };
@@ -79,7 +75,6 @@ const Welcome = () => {
             <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
             <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
             <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
-            <Input placeholder="Enter Data" name="date" type="date" handleChange={handleChange} />
 
             <div className="a" />
 
