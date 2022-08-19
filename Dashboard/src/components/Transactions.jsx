@@ -4,7 +4,7 @@ import { TransactionContext } from "../context/TransactionContext";
 
 
 import { shortenAddress } from "../utils/shortenAddress";
-
+/*
 const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword, amount, url }) => {
 
 
@@ -21,7 +21,7 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword,
                     <p className="b">Amount: {amount} ETH</p>
                     {message && (
                         <>
-                            <br />
+                           
                             <p className="b">Message: {message}</p>
                         </>
                     )}
@@ -31,9 +31,50 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword,
                     <p className="b">{timestamp}</p>
                 </div>
             </div>
+            <br />
         </div>
+        
+    );
+};*/
+
+//test icin
+const TransactionsCard = ({ addressTo, addressFrom,amount }) => {
+
+
+    return (
+        <div className="b   "
+        >
+            <div className="b">
+                <div className="b">
+                    <p className="b">From: {shortenAddress(addressFrom)}</p>
+
+
+                    <p className="b">To: {shortenAddress(addressTo)}</p>
+
+                    <p className="b">Amount: {amount} ETH</p>
+                 
+                </div>
+             
+                <div className="b">
+                    
+                </div>
+            </div>
+            <br />
+        </div>
+        
     );
 };
+
+
+
+
+
+
+
+
+
+
+
 
 const Transactions = () => {
     const { transactions, currentAccount } = useContext(TransactionContext);
