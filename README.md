@@ -8,5 +8,4 @@ npm install <br/>
 cd .. <br/>
 cd Dashboard <br/> 
 yarn add react-tradingview-widget<br/> 
-npm install <br/> 
 npm run start <br/>
