@@ -35,8 +35,8 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Gönderilenler
-        <Link to="/users/new" className="link">
-          Yeni Kişi Ekle<i></i>
+        <Link to="/users/newtransfer" className="link">
+          Yeni Yatırım Oluştur<i></i>
         </Link>
       </div>
       <DataGrid

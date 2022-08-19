@@ -9,6 +9,7 @@ import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import NewTransfer from "./pages/newtransfer/NewTransfer";
 
 
 function App() {
@@ -25,8 +26,8 @@ function App() {
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
               <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
+                path="newtransfer"
+                element={<NewTransfer/>}
               />
             </Route>
             <Route path="products">
