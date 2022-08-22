@@ -22,7 +22,8 @@ const Send = () => {
   return (
     <div>
     <Welcome/>
-    <Transactions></Transactions>
+    {<Transactions></Transactions>}
+    
     </div>
     
   );

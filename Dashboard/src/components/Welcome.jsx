@@ -23,11 +23,11 @@ const Welcome = () => {
 
   const handleSubmit = (e) => {
     //console.log(e)
-    const { addressTo, amount, keyword, message } = formData;
+    const { addressTo, amount, keyword, message ,gonderimTarihi} = formData;
 
     e.preventDefault();
 
-    if (!addressTo || !amount || !keyword || !message) return;
+    if (!addressTo || !amount ||!gonderimTarihi) return;
       sendTransaction();
   };
 
@@ -74,6 +74,7 @@ const Welcome = () => {
             <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
             <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
             <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
+            <Input placeholder="gonderimTarihi" name="gonderimTarihi" type="date" handleChange={handleChange} />
 
             <div className="a" />
 

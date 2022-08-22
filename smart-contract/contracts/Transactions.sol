@@ -36,14 +36,14 @@ contract Transactions{
     }
 
     //invesment ekleme testi
-    event InvesmentiEkle(address from, address receiver, uint amount, uint256  tarih1, uint256  tarih2, bool isactive,bool test , uint transactionCount);
+    event InvesmentiEkle(address from, address receiver, uint amount, uint256  timeOfInvesment, uint256  timeForRelease, bool isactive,bool test , uint transactionCount);
 
         //investment ekleme için test
-       function addToBlockchain(address payable receiver, uint amount, string memory message) public {
+       function addToBlockchain(address payable receiver, uint amount, uint timeForRelease) public {
         transactionCount += 1;
-        invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, block.timestamp, false,true,transactionCount));
+        invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount));
 
-        emit InvesmentiEkle(msg.sender, receiver, amount,  block.timestamp, block.timestamp, false,true,transactionCount);
+        emit InvesmentiEkle(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount);
     
     }
 

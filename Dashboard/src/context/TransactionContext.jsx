@@ -18,11 +18,12 @@ const createEthereumContract = () => {
 
 export const TransactionsProvider = ({ children }) => {
   console.log("testesttes");
-  const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
+  const [formData, setformData] = useState({ addressTo: "", amount: "", keyword: "", message: "" ,gonderimTarihi:""});
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
   const [transactions, setTransactions] = useState([]);
+  
 
   
   const handleChange = (e, name) => {
@@ -139,7 +140,7 @@ export const TransactionsProvider = ({ children }) => {
   const sendTransaction = async () => {
     try {
       if (ethereum) {
-        const { addressTo, amount, keyword, message } = formData;
+        const { addressTo, amount, keyword, gonderimTarihi } = formData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
@@ -154,8 +155,8 @@ export const TransactionsProvider = ({ children }) => {
         });
 
      
-
-        const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount, message);
+        console.log(Number(new Date(gonderimTarihi)));
+        const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount,Number(new Date(gonderimTarihi)));
 
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
@@ -211,13 +212,15 @@ export const TransactionsProvider = ({ children }) => {
         console.log("control 1");
         const availableTransactions = await transactionsContract.getAllinvesments();
         console.log("control 2");
-
+        
         const structuredTransactions = availableTransactions.map((transaction) => ({
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
-          amount: parseInt(transaction.amount._hex) / (10 ** 18)
-          
+          amount: parseInt(transaction.amount._hex) / (10 ** 18),
+          gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString()
         }));
+       
+
         console.log("------------");
         console.log(structuredTransactions);
         console.log("++++++++++++");
