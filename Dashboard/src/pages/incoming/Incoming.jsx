@@ -7,6 +7,11 @@ import { useState } from "react";
 const Incoming = () => {
   const[defaultReleaseTime,setDefaultReleaseTime] = useState();
   const[defaultAmount,setDefaultAmount] = useState();
+  const[defaultRemainingTime,setDefaultRemainingTime] = useState();
+  let today = new Date().toISOString().slice(0, 10);
+
+  //setDefaultRemainingTime(defaultReleaseTime-today);
+
   return (
     <div className="single">
       <Sidebar />
@@ -15,8 +20,15 @@ const Incoming = () => {
         <div className="top">
           <div className="left">
             <Container className="data">
+              {defaultRemainingTime === 0 || defaultRemainingTime < 0 ? (<p style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi! Aşağıdaki Düğme ile Parayı Cüzdanınıza Aktarabilirsiniz.</p>) : 
+              (<p style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Gerçekleştirilemiyor!</p>)}
               <br/><br/>
               <p>Aktarımın gerçekleşeceği tarih: {defaultReleaseTime}</p><br/>
+              <form>
+                <label>Tarih:</label>
+                <input type="date" value={defaultReleaseTime}/>
+              </form>
+              <br/><p>{defaultReleaseTime}</p><br/>
               <div>
                 <svg width="73px" height="88px" viewBox="0 0 73 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                   <g id="hourglass">
