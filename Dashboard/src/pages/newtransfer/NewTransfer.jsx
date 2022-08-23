@@ -1,42 +1,66 @@
 import "./newtransfer.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useState, useEffect } from "react";
+import { TransactionContext } from "../../context/TransactionContext";
+import { useState, useEffect ,useContext} from "react";
+
+const Input = ({  name, type, value, handleChange }) => (
+    <input
+      type={type}
+      step="0.0001"
+      value={value}
+      onChange={(e) => handleChange(e, name)}
+      className="a"
+      min={0}
+    />
+  );
+
+
 
 const NewTransfer = () => {
-    const initialValues = {name: "", address: "", amount: "", date: ""};
-    const [formValues, setFormValues] = useState(initialValues);
+  
+   
+    const {  sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
+    /*const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);*/
     let today = new Date().toISOString().slice(0, 10);
 
-    const handleChange = (e) => {
+    /*const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormValues({...formValues, [name]: value});
-    };
+        setformData({...formData, [name]: value});
+    };*/
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validate(formValues));
+        //const { addressTo, amount, nickName ,gonderimTarihi} = formData;
+        setFormErrors(validate(formData));
         setIsSubmit(true);
+        sendTransaction();
+        
     };
 
     const validate = (values) => {
+        console.log("validate");
         const errors = {};
-        if(!values.name){
-            errors.name = "İsim boş bırakılamaz!";
+        if(!values.nickName){
+            errors.nickName = "İsim boş bırakılamaz!";
         }
-        if(!values.address){
-            errors.address = "Cüzdan adresi boş bırakılamaz!";
+        if(!values.addressTo){
+            errors.addressTo = "Cüzdan adresi boş bırakılamaz!";
         }
         if(!values.amount){
             errors.amount = "Miktar boş bırakılamaz!";
         }
-        if(!values.date){
-            errors.date = "Tarih boş bırakılamaz!";
-        }else if(values.date < today){
-            errors.date = "Lütfen gelecek bir tarih giriniz!"
+        if(!values.gonderimTarihi){
+            errors.gonderimTarihi = "Tarih boş bırakılamaz!";
+        }else if(values.gonderimTarihi < today){
+            errors.gonderimTarihi = "Lütfen gelecek bir tarih giriniz!"
         }
+        console.log("validate");
+        console.log(errors);
+        console.log("validate");
+
         return errors;
     };
 
@@ -50,29 +74,29 @@ const NewTransfer = () => {
                 </div>
                 <div className="bottom">
                     <div className="right">
-                        {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 
+                        {/*Object.keys(formErrors).length === 0 */true&& /*isSubmit*/true ? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 
                         (<div className="ui message success" style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Gerçekleştirilemiyor!</div>)}
                         <form onSubmit={handleSubmit}>
                             <div name="myForm" className="formInput" key="">
                                 <label>İsim:</label>
-                                <input type="text" name="name" value={formValues.name} onChange={handleChange}></input>
+                                <Input  name="nickName" type="text" value={formData.name} handleChange={handleChange} />
                                 <br/>
-                                <p style={{color:'red'}}>{formErrors.name}</p>
+                                <p style={{color:'red'}}>{formErrors.nickName}</p>
                                 <br/>
                                 <label>Cüzdan Adresi:</label>
-                                <input type="text" name="address" value={formValues.address} onChange={handleChange}></input>
+                                <Input  name="addressTo" type="text" value={formData.name} handleChange={handleChange} />
                                 <br/>
-                                <p style={{color:'red'}}>{formErrors.address}</p>
+                                <p style={{color:'red'}}>{formErrors.addressTo}</p>
                                 <br/>
                                 <label>Miktar:</label>
-                                <input type="number" name="amount" value={formValues.amount} onChange={handleChange}></input>
+                                <Input  name="amount" type="number" value={formData.name} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.amount}</p>
                                 <br/>
                                 <label>Tarih:</label>
-                                <input type="date" name="date" value={formValues.date} onChange={handleChange}></input>
+                                <Input  name="gonderimTarihi" type="date" value={formData.name} handleChange={handleChange} />
                                 <br/>
-                                <p style={{color:'red'}}>{formErrors.date}</p>
+                                <p style={{color:'red'}}>{formErrors.gonderimTarihi}</p>
                                 <br/>
                                 <button>Gönder</button>
                             </div>

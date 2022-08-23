@@ -36,14 +36,14 @@ contract Transactions{
     }
 
     //invesment ekleme testi
-    event InvesmentiEkle(address from, address receiver, uint amount, uint256  tarih1, uint256  tarih2, bool isactive,bool test , uint transactionCount);
+    event InvesmentiEkle(address from, address receiver, uint amount, uint256  timeOfInvesment, uint256  timeForRelease, bool isactive,bool test , uint transactionCount);
 
         //investment ekleme için test
-       function addToBlockchain(address payable receiver, uint amount, string memory message) public {
+       function addToBlockchain(address payable receiver, uint amount, uint timeForRelease) public {
         transactionCount += 1;
-        invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, block.timestamp, false,true,transactionCount));
+        invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount));
 
-        emit InvesmentiEkle(msg.sender, receiver, amount,  block.timestamp, block.timestamp, false,true,transactionCount);
+        emit InvesmentiEkle(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount);
     
     }
 
@@ -165,13 +165,15 @@ contract Transactions{
         require(!allInactive, "There are no invesments made for you");
     }
 
-    function myInvesments() public {
+      function myInvesments() view public returns( invesment[] memory ) {
+        invesment[] memory returnMyInvesments = new invesment[](userMapping[msg.sender].myInvesments.length);
         for(uint i = 0; i < userMapping[msg.sender].myInvesments.length; i++){
             uint invesmentNo = userMapping[msg.sender].myInvesments[i];
-            emit InvesmentInfo(invesments[invesmentNo].invester,invesments[invesmentNo].receiver , invesments[invesmentNo].amount, invesments[invesmentNo].timeOfInvesment,  invesments[invesmentNo].timeForRelease, invesments[invesmentNo].invesmentNo);
+            returnMyInvesments[i] = invesments[invesmentNo];
         }
+        return returnMyInvesments;
     }
-
+  
     function reverseInvesment(uint invesmentNo) payable public {
         //cancel an invesment
         require(invesments[invesmentNo].invester == msg.sender, "You are not the investor, only investors can cancel an invesment.");
@@ -181,12 +183,12 @@ contract Transactions{
         userMapping[msg.sender].funds = userMapping[msg.sender].funds + invesments[invesmentNo].amount;
     }
  
-    function makeInvesment(address  receiver, uint timeForRelease) payable public {
+       function makeInvesment(address  receiver, uint timeForRelease, uint amount) payable public {
         uint invesmentNo = invesments.length;
         userMapping[msg.sender].myInvesments.push(invesmentNo);
         userMapping[receiver].invesmentsToMe.push(invesmentNo);
-        emit InvesmentInfo(msg.sender,receiver,msg.value,block.timestamp,timeForRelease,invesmentNo);
-        invesments.push(invesment(msg.sender, receiver, msg.value , block.timestamp, timeForRelease, true, true, invesmentNo));
+        emit InvesmentInfo(msg.sender,receiver,amount,block.timestamp,timeForRelease,invesmentNo);
+        invesments.push(invesment(msg.sender, receiver, amount , block.timestamp, timeForRelease, true, true, invesmentNo));
         
     }
 
