@@ -40,7 +40,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log("test 2");
         const parsedAmount = ethers.utils.parseEther(amount);
         console.log("test 3");
-        await ethereum.request({
+        /*await ethereum.request({
           method: "eth_sendTransaction",
           params: [{
             from: currentAccount,
@@ -48,7 +48,7 @@ export const TransactionsProvider = ({ children }) => {
             gas: "0x5208",
             value: parsedAmount._hex,
           }],
-        });
+        });*/
         console.log("test 4");
      
         console.log(Number(new Date(gonderimTarihi)));
@@ -114,10 +114,20 @@ export const TransactionsProvider = ({ children }) => {
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
-          gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString()
+          gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString(),
+          investmentNo:transaction.invesmentNo,
         }));
        
 
+        console.log("logTimeForRelease");
+        console.log(transactionsContract.logTimeForRelease(4));
+        console.log("logTimeForBlockTimeStamp");
+        console.log(transactionsContract.logTimeForBlockTimeStamp());
+
+      
+
+        const result = await transactionsContract.withdrawInvesment(4);
+        console.log(result);
         console.log("------------");
         console.log(structuredTransactions);
         console.log("++++++++++++");

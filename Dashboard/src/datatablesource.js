@@ -26,7 +26,7 @@ export const userColumns = [
   },
   {
     field: "gonderimTarihi",
-    headerName: "Gonderim Tarihi",
+    headerName: "Teslim Tarihi",
     width: 350,
   },
   {

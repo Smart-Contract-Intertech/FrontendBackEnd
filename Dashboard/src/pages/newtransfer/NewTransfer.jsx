@@ -34,8 +34,8 @@ const NewTransfer = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //const { addressTo, amount, nickName ,gonderimTarihi} = formData;
-        setFormErrors(validate(formData));
-        setIsSubmit(true);
+        //setFormErrors(validate(formData));
+        //setIsSubmit(true);
         sendTransaction();
         
     };
@@ -74,7 +74,7 @@ const NewTransfer = () => {
                 </div>
                 <div className="bottom">
                     <div className="right">
-                        {/*Object.keys(formErrors).length === 0 */true&& /*isSubmit*/true ? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 
+                        {Object.keys(formErrors).length === 0 && isSubmit? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 
                         (<div className="ui message success" style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Gerçekleştirilemiyor!</div>)}
                         <form onSubmit={handleSubmit}>
                             <div name="myForm" className="formInput" key="">
