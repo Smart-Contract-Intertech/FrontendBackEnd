@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constants";
+import { parse } from "@ethersproject/transactions";
 
 export const TransactionContext = React.createContext();
 
@@ -53,7 +54,10 @@ export const TransactionsProvider = ({ children }) => {
      
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
-        const transactionHash = await transactionsContract.makeInvesment(addressTo,Number(new Date(gonderimTarihi)), parsedAmount);
+
+        const transactionHash = await transactionsContract.makeInvesment(addressTo,Number(new Date(gonderimTarihi)), {value: parsedAmount});
+
+        await transactionHash.wait();
         console.log("test 6");
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
@@ -75,10 +79,6 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
   
-
-
-
-
   const checkIfWalletIsConnect = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
@@ -116,18 +116,13 @@ export const TransactionsProvider = ({ children }) => {
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
           gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString(),
           investmentNo:transaction.invesmentNo,
-        }));
-       
-
+        })); 
+        //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");
-        console.log(transactionsContract.logTimeForRelease(4));
+        console.log(transactionsContract.logTimeForRelease(0));
         console.log("logTimeForBlockTimeStamp");
         console.log(transactionsContract.logTimeForBlockTimeStamp());
-
-      
-
-        const result = await transactionsContract.withdrawInvesment(4);
-        console.log(result);
+        
         console.log("------------");
         console.log(structuredTransactions);
         console.log("++++++++++++");
@@ -141,16 +136,6 @@ export const TransactionsProvider = ({ children }) => {
       console.log(error);
     }
   };
-
-
-
-
-
-
-
-
-
-
 
   const checkIfTransactionsExists = async () => {
     try {
