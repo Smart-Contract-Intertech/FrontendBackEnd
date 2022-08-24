@@ -8,6 +8,7 @@ npm install <br/>
 cd .. <br/>
 cd Dashboard <br/> 
 yarn add react-tradingview-widget<br/> 
+yarn add apexcharts react-apexcharts<br/> 
 npm run start <br/>
 
 Proje için gerekli videolar.<br/>

@@ -21,7 +21,7 @@ contract Transactions{
         address  receiver;
         uint amount;
         uint timeOfInvesment;   //In terms of seconds
-        uint timeForRelease;    //Timestamp of the block
+        uint256 timeForRelease;    //Timestamp of the block
         bool isReversable;      //Unused
         bool isActive;          
         uint invesmentNo;
@@ -39,7 +39,7 @@ contract Transactions{
     event InvesmentiEkle(address from, address receiver, uint amount, uint256  timeOfInvesment, uint256  timeForRelease, bool isactive,bool test , uint transactionCount);
 
         //investment ekleme için test
-       function addToBlockchain(address payable receiver, uint amount, uint timeForRelease) public {
+       function addToBlockchain(address payable receiver, uint amount, uint256 timeForRelease) public {
         transactionCount += 1;
         invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount));
 
@@ -119,7 +119,7 @@ contract Transactions{
         */
     }
 
-    function divideToRecipients(uint timeForRelease) public {
+    function divideToRecipients(uint256 timeForRelease) public {
         //divide all the eth to recipients as invesments
 
         //for now it divides equally
@@ -149,7 +149,7 @@ contract Transactions{
         }
     }
 
-    event InvesmentInfo(address  invester, address  receiver, uint amount,  uint timeOfInvesment, uint timeForRelease, uint invesmentNo);
+    event InvesmentInfo(address  invester, address  receiver, uint amount,  uint timeOfInvesment, uint256 timeForRelease, uint invesmentNo);
 
     function invesmentsMadeToMe() public {
         //return the sum of the invesments from "invesmentsToMe" array
@@ -165,13 +165,15 @@ contract Transactions{
         require(!allInactive, "There are no invesments made for you");
     }
 
-    function myInvesments() public {
+      function myInvesments() view public returns( invesment[] memory ) {
+        invesment[] memory returnMyInvesments = new invesment[](userMapping[msg.sender].myInvesments.length);
         for(uint i = 0; i < userMapping[msg.sender].myInvesments.length; i++){
             uint invesmentNo = userMapping[msg.sender].myInvesments[i];
-            emit InvesmentInfo(invesments[invesmentNo].invester,invesments[invesmentNo].receiver , invesments[invesmentNo].amount, invesments[invesmentNo].timeOfInvesment,  invesments[invesmentNo].timeForRelease, invesments[invesmentNo].invesmentNo);
+            returnMyInvesments[i] = invesments[invesmentNo];
         }
+        return returnMyInvesments;
     }
-
+  
     function reverseInvesment(uint invesmentNo) payable public {
         //cancel an invesment
         require(invesments[invesmentNo].invester == msg.sender, "You are not the investor, only investors can cancel an invesment.");
@@ -181,24 +183,33 @@ contract Transactions{
         userMapping[msg.sender].funds = userMapping[msg.sender].funds + invesments[invesmentNo].amount;
     }
  
-    function makeInvesment(address  receiver, uint timeForRelease) payable public {
+       function makeInvesment(address  receiver, uint256 timeForRelease, uint amount) payable public {
         uint invesmentNo = invesments.length;
         userMapping[msg.sender].myInvesments.push(invesmentNo);
         userMapping[receiver].invesmentsToMe.push(invesmentNo);
-        emit InvesmentInfo(msg.sender,receiver,msg.value,block.timestamp,timeForRelease,invesmentNo);
-        invesments.push(invesment(msg.sender, receiver, msg.value , block.timestamp, timeForRelease, true, true, invesmentNo));
+        emit InvesmentInfo(msg.sender,receiver,amount,block.timestamp,timeForRelease,invesmentNo);
+        invesments.push(invesment(msg.sender, receiver, amount , block.timestamp, timeForRelease, true, true, invesmentNo));
         
     }
+   
 
     function withdrawInvesment(uint invesmentNo) payable public {
         require(invesments[invesmentNo].receiver == msg.sender, "This invesment is not for this address!");
         require(invesments[invesmentNo].isActive, "You can not withdraw from an inactive invesment.");
-        require((invesments[invesmentNo].timeOfInvesment + invesments[invesmentNo].timeForRelease) <  block.timestamp, "You can not withdraw the funds yet!");
+        require( invesments[invesmentNo].timeForRelease  < block.timestamp, "You can not withdraw the funds yet!");
         invesments[invesmentNo].isActive = false;
         payable(msg.sender).transfer(invesments[invesmentNo].amount);
+      
+    }
+
+    function logTimeForRelease(uint invesmentNo) view public returns(uint){
+        return invesments[invesmentNo].timeForRelease;
+    }
+      function logTimeForBlockTimeStamp() view public returns(uint){
+        return block.timestamp;
     }
     
-    function reviseInvesment(uint invesmentNo, uint amount, uint timeForRelease) public {
+    function reviseInvesment(uint invesmentNo, uint amount, uint256 timeForRelease) public {
         require(invesments[invesmentNo].invester == msg.sender, "You can not revise an invesment you did not make.");
         require(invesments[invesmentNo].isActive, "This is an inactive invesment.");
         require(invesments[invesmentNo].timeOfInvesment + timeForRelease >= block.timestamp, "You can not set an invesment to be relased in a past date.");

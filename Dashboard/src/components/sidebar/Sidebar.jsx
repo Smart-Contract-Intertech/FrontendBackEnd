@@ -54,12 +54,7 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">USEFUL</p>
-          <Link to="/sendTo" style={{ textDecoration: "none" }}>
-            <li>
-            <InsertChartIcon className="icon" />
-              <span>Gönder</span>
-            </li>
-          </Link>
+      
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>

@@ -2,9 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
-import Send from "./pages/Send/Send.jsx";
 import New from "./pages/new/New";
-import Incoming from "./pages/incoming/Incoming.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -39,8 +37,8 @@ function App() {
                 element={<New inputs={productInputs} title="Add New Product" />}
               />
             </Route>
-            <Route path="sendTo" element={<Send />} />
-            <Route path="heritage" element={<Incoming/>}/>
+            
+
           </Route>
         </Routes>
       </BrowserRouter>
