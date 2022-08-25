@@ -9,11 +9,10 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import NewTransfer from "./pages/newtransfer/NewTransfer";
-
+import Edit from "./pages/edit/Edit";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
@@ -28,6 +27,10 @@ function App() {
                 path="newtransfer"
                 element={<NewTransfer/>}
               />
+              <Route
+                path="edit"
+                element={<Edit/>}
+              />
             </Route>
             <Route path="products">
               <Route index element={<List />} />
@@ -37,8 +40,6 @@ function App() {
                 element={<New inputs={productInputs} title="Add New Product" />}
               />
             </Route>
-            
-
           </Route>
         </Routes>
       </BrowserRouter>

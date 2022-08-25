@@ -72,7 +72,7 @@ const Datatable = () => {
       
       return (
         <div className="cellAction">
-          <Link to="/users/newtransfer" style={{ textDecoration: "none" }}>
+          <Link to="/users/edit" style={{ textDecoration: "none" }}>
             <div className="viewButton"
             onClick={()=>handleEdit(params.row.id)}>Düzenle</div>
           </Link>
