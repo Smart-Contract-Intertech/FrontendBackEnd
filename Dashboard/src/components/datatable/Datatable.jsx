@@ -14,7 +14,7 @@ const Datatable = () => {
 
   const sta = ['PENDING', 'COMPLETED', 'CANCELLED'];
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
 
     const rows=transactions.reverse().map((transaction, i) => (  
       {   
@@ -27,11 +27,11 @@ const Datatable = () => {
       invesmentNumber: transaction.invesmentNo
       }))
 
-      deleteTransaction();
+      deleteTransaction(id);
   };
 
-  const handleWithdraw = async () => {
-    withdrawInvesment();
+  const handleWithdraw = async (id) => {
+    withdrawInvesment(id);
   }
 
   
@@ -54,14 +54,15 @@ const Datatable = () => {
     const rows=transactions.reverse().map((transaction, i) => (
       {   
         id: i,
-        username: shortenAddress(transaction.addressTo),
-        status: "active",
-        email: "1snow@gmail.com",   
+        username: transaction.addressFrom,
+        status: transaction.status,
+        email: transaction.name,   
         age: transaction.amount,
-        gonderimTarihi:transaction.investmentNo,
-        tarih: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString()
+        gonderimTarihi:transaction.gonderimTarihi,
+        number: transaction.invesmentNo,
       }))
     setformData((prevState) => ({"addressTo": rows[id].gonderimTarihi, ["nickName"]: rows[id].email, "amount":rows[id].age, "gonderimTarihi":rows[id].tarih}))
+
   }
 
   const actionColumn = [{
@@ -84,10 +85,11 @@ const Datatable = () => {
 
           <div
             className="deleteButton"
-            onClick={() => handleDelete()}
+            onClick={() => handleDelete(params.row.id)}
           >
             Sil
           </div>
+          <div className="withdrawButton" onClick={() => handleWithdraw(params.row.id)}>Withdraw</div>
         </div>
         
       );
@@ -95,7 +97,6 @@ const Datatable = () => {
   },];
   return (
     <div className="datatable">
-      <div className="withdrawButton" onClick={() => handleWithdraw()}>Withdraw</div>
       <div className="datatableTitle">
         Gönderilenler
         <Link to="/users/newtransfer" className="link">
