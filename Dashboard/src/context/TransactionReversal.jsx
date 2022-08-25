@@ -14,15 +14,16 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const deleteTransaction = async (receiverAddress) => {
+export const deleteTransaction = async (id) => {
 
     try {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
-
+        /*
         const transactionId = transactionsContract.findInvesmentNo(receiverAddress);  
         console.log(transactionId);
-        const transactionDeleted = await transactionsContract.reverseInvesment(2);
+        */
+        const transactionDeleted = await transactionsContract.reverseInvesment(id);
 
         await transactionDeleted.wait();
 
