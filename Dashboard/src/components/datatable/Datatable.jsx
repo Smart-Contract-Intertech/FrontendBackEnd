@@ -5,31 +5,45 @@ import { Link } from "react-router-dom";
 import { useState,useContext,useEffect } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from "../../utils/shortenAddress";
-
-
-
-
+import { deleteTransaction } from "../../context/TransactionReversal";
+import { withdrawInvesment } from "../../context/WithdrawTransaction";
 
 const Datatable = () => {
 
   const {transactions,setformData } = useContext(TransactionContext);
 
+  const sta = ['PENDING', 'COMPLETED', 'CANCELLED'];
 
+  const handleDelete = () => {
 
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
+    const rows=transactions.reverse().map((transaction, i) => (  
+      {   
+      id: i,
+      username: transaction.addressFrom,
+      status: transaction.status,
+      email: transaction.name,   
+      age: transaction.amount,
+      gonderimTarihi:transaction.gonderimTarihi,
+      invesmentNumber: transaction.invesmentNo
+      }))
+
+      deleteTransaction();
   };
+
+  const handleWithdraw = async () => {
+    withdrawInvesment();
+  }
 
   
   const handleResend = (id) => {
     const rows=transactions.reverse().map((transaction, i) => (  
       {   
       id: i,
-      username: shortenAddress(transaction.addressTo),
-      status: "active",
-      email: "1snow@gmail.com",   
+      username: transaction.addressFrom,
+      status: transaction.status,
+      email: transaction.name,   
       age: transaction.amount,
-      gonderimTarihi:transaction.investmentNo
+      gonderimTarihi:transaction.gonderimTarihi
       }))
    
       console.log(rows[id]);
@@ -55,7 +69,7 @@ const Datatable = () => {
 
           <div
             className="deleteButton"
-            onClick={() => handleDelete(params.row.id)}
+            onClick={() => handleDelete()}
           >
             Sil
           </div>
@@ -66,6 +80,7 @@ const Datatable = () => {
   },];
   return (
     <div className="datatable">
+      <div className="withdrawButton" onClick={() => handleWithdraw()}>Withdraw</div>
       <div className="datatableTitle">
         Gönderilenler
         <Link to="/users/newtransfer" className="link">
@@ -77,9 +92,9 @@ const Datatable = () => {
         rows={transactions.reverse().map((transaction, i) => (  
           {   
           id: i,
-          username: shortenAddress(transaction.addressTo),
-          status: "active",
-          email: "1snow@gmail.com",
+          username: transaction.addressFrom,
+          status: sta[transaction.status],
+          email: transaction.name,
           age: transaction.amount,
           gonderimTarihi:transaction.gonderimTarihi
           }))}

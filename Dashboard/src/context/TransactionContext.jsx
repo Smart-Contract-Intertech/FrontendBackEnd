@@ -55,7 +55,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
 
-        const transactionHash = await transactionsContract.makeInvesment(addressTo,Number(new Date(gonderimTarihi)), {value: parsedAmount});
+        const transactionHash = await transactionsContract.makeInvesment(addressTo,Number(new Date(gonderimTarihi)), nickName, {value: parsedAmount});
 
         await transactionHash.wait();
         console.log("test 6");
@@ -65,9 +65,11 @@ export const TransactionsProvider = ({ children }) => {
         console.log(`Success - ${transactionHash.hash}`);
         setIsLoading(false);
 
+        /*
         const transactionsCount = await transactionsContract.getTransactionCount();
 
         setTransactionCount(transactionsCount.toNumber());
+        */
         window.location.reload();
       } else {
         console.log("No ethereum object");
@@ -115,13 +117,10 @@ export const TransactionsProvider = ({ children }) => {
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
           gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString(),
-          investmentNo:transaction.invesmentNo,
+          name: transaction.name,
+          status: transaction.invesmentStatus,
+          invesmentNumber:transaction.invesmentNo,
         })); 
-        //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
-        console.log("logTimeForRelease");
-        //console.log(transactionsContract.logTimeForRelease(0));
-        console.log("logTimeForBlockTimeStamp");
-        //  console.log(transactionsContract.logTimeForBlockTimeStamp());
         
         console.log("------------");
         console.log(structuredTransactions);
