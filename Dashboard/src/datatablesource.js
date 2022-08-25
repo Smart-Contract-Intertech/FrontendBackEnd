@@ -27,7 +27,7 @@ export const userColumns = [
   {
     field: "gonderimTarihi",
     headerName: "Teslim Tarihi",
-    width: 350,
+    width: 150,
   },
   {
     field: "status",

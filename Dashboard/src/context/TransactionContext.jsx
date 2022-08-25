@@ -119,9 +119,9 @@ export const TransactionsProvider = ({ children }) => {
         })); 
         //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");
-        console.log(transactionsContract.logTimeForRelease(0));
+        //console.log(transactionsContract.logTimeForRelease(0));
         console.log("logTimeForBlockTimeStamp");
-        console.log(transactionsContract.logTimeForBlockTimeStamp());
+        //  console.log(transactionsContract.logTimeForBlockTimeStamp());
         
         console.log("------------");
         console.log(structuredTransactions);

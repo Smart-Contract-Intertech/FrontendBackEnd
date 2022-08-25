@@ -1,61 +1,71 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from "../../utils/shortenAddress";
-import { deleteTransaction } from "../../context/TransactionReversal";
-import { withdrawInvesment } from "../../context/WithdrawTransaction";
-import React from "react";
+
+
+
+
 
 const Datatable = () => {
-  const {transactions } = useContext(TransactionContext);
 
-  //const [data, setData] = useState(userRows);
+  const {transactions,setformData } = useContext(TransactionContext);
 
-  const handleDelete = async (address) => {
-    deleteTransaction(address);
+
+
+  const handleDelete = (id) => {
+    //setData(data.filter((item) => item.id !== id));
   };
 
-  const handleCopy = async (address) => {
-    if('clipboard' in navigator){
-      return await navigator.clipboard.writeText(address);
-    }
-    else{
-      return document.execCommand('copy', true, address);
-    }
-  }
-
-  const handleWithdraw = async (address) => {
-    withdrawInvesment();
-  }
+  
+  const handleResend = (id) => {
+    const rows=transactions.reverse().map((transaction, i) => (  
+      {   
+      id: i,
+      username: shortenAddress(transaction.addressTo),
+      status: "active",
+      email: "1snow@gmail.com",   
+      age: transaction.amount,
+      gonderimTarihi:transaction.investmentNo
+      }))
+   
+      console.log(rows[id]);
+      setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,["nickName"]: rows[id].email}));  
+  };
 
   const actionColumn = [{
     field: "değişiklik",
     headerName: "Düzenle",
-    width: 200,
+    width: 350,
     renderCell: (params) => {
+      
       return (
         <div className="cellAction">
-          
-            <div className="viewButton" onClick={() => handleWithdraw()}>Withdraw</div>
-          
+          <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <div className="viewButton">Düzenle</div>
+          </Link>
+         
+          <Link to="/users/newtransfer" style={{ textDecoration: "none" }}>
+            <div className="resendButton" 
+            onClick={() => handleResend(params.row.id)}>Tekrar Gönder </div>
+          </Link>
+
           <div
             className="deleteButton"
-            onClick={() => handleDelete(params.row.username)}
+            onClick={() => handleDelete(params.row.id)}
           >
-            Delete
+            Sil
           </div>
-          <div className="copyButton" onClick={() => handleCopy(params.row.username)}> Copy </div>
         </div>
+        
       );
     },
   },];
   return (
     <div className="datatable">
-
-      <div className="viewButton" onClick={() => handleWithdraw()}>Withdraw</div> 
       <div className="datatableTitle">
         Gönderilenler
         <Link to="/users/newtransfer" className="link">
@@ -67,7 +77,7 @@ const Datatable = () => {
         rows={transactions.reverse().map((transaction, i) => (  
           {   
           id: i,
-          username: transaction.addressFrom,
+          username: shortenAddress(transaction.addressTo),
           status: "active",
           email: "1snow@gmail.com",
           age: transaction.amount,
