@@ -80,9 +80,7 @@ const Datatable2 = () => {
     <div className="datatable2">
       <div className="datatableTitle">
         Bana Gönderilenler
-        <Link to="/users/newtransfer" className="link">
-          Yeni Yatırım Oluştur<i></i>
-        </Link>
+     
       </div>
       <DataGrid
         className="datagrid"
