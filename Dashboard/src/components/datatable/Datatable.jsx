@@ -50,6 +50,20 @@ const Datatable = () => {
       setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,["nickName"]: rows[id].email}));  
   };
 
+  const handleEdit = (id) => {
+    const rows=transactions.reverse().map((transaction, i) => (
+      {   
+        id: i,
+        username: shortenAddress(transaction.addressTo),
+        status: "active",
+        email: "1snow@gmail.com",   
+        age: transaction.amount,
+        gonderimTarihi:transaction.investmentNo,
+        tarih: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString()
+      }))
+    setformData((prevState) => ({"addressTo": rows[id].gonderimTarihi, ["nickName"]: rows[id].email, "amount":rows[id].age, "gonderimTarihi":rows[id].tarih}))
+  }
+
   const actionColumn = [{
     field: "değişiklik",
     headerName: "Düzenle",
@@ -58,8 +72,9 @@ const Datatable = () => {
       
       return (
         <div className="cellAction">
-          <Link to="/users/test" style={{ textDecoration: "none" }}>
-            <div className="viewButton">Düzenle</div>
+          <Link to="/users/newtransfer" style={{ textDecoration: "none" }}>
+            <div className="viewButton"
+            onClick={()=>handleEdit(params.row.id)}>Düzenle</div>
           </Link>
          
           <Link to="/users/newtransfer" style={{ textDecoration: "none" }}>
