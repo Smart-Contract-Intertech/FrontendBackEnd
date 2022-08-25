@@ -21,47 +21,13 @@ contract Transactions{
         address  receiver;
         uint amount;
         uint timeOfInvesment;   //In terms of seconds
-        uint256 timeForRelease;    //Timestamp of the block
+        uint timeForRelease;    //Timestamp of the block
         bool isReversable;      //Unused
         bool isActive;          
         uint invesmentNo;
-
     }
+
     invesment[] invesments;     // ?? Can be improved using maps
-
-
-    //invesment[] invesments; için bir getter method.
-    function getAllinvesments() public view returns (invesment[] memory) {
-        return invesments;
-    }
-
-    //invesment ekleme testi
-    event InvesmentiEkle(address from, address receiver, uint amount, uint256  timeOfInvesment, uint256  timeForRelease, bool isactive,bool test , uint transactionCount);
-
-        //investment ekleme için test
-       function addToBlockchain(address payable receiver, uint amount, uint256 timeForRelease) public {
-        transactionCount += 1;
-        invesments.push(invesment(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount));
-
-        emit InvesmentiEkle(msg.sender, receiver, amount,  block.timestamp, timeForRelease, false,true,transactionCount);
-    
-    }
-
-
-
-      
-  
-    
-
-    //react icin lazım
-    uint256 transactionCount;
-    
-    function getTransactionCount() public view returns (uint256) {
-        return transactionCount;
-    }
-
-
-    
     address[] userAddresses;
     mapping(address => user) userMapping;
 
@@ -119,7 +85,7 @@ contract Transactions{
         */
     }
 
-    function divideToRecipients(uint256 timeForRelease) public {
+    function divideToRecipients(uint timeForRelease) public {
         //divide all the eth to recipients as invesments
 
         //for now it divides equally
@@ -139,33 +105,34 @@ contract Transactions{
         }
     }
 
-    event RegisteredUser(address userAddress);
-
-    function getRecipients() public{
+    function getRecipients() public view returns(address[] memory) {
         require(userMapping[msg.sender].recipients.length > 0, "No recipient registered");
+        address[] memory returnArray = new address[](userMapping[msg.sender].recipients.length);
         for(uint i = 0; i < userMapping[msg.sender].recipients.length; i++){
             address recipientAddress = userMapping[msg.sender].recipients[i];
-            emit RegisteredUser(recipientAddress);
+            returnArray[i] = recipientAddress;
         }
+        return returnArray;
     }
 
-    event InvesmentInfo(address  invester, address  receiver, uint amount,  uint timeOfInvesment, uint256 timeForRelease, uint invesmentNo);
 
-    function invesmentsMadeToMe() public {
-        //return the sum of the invesments from "invesmentsToMe" array
+    function invesmentsMadeToMe() public view returns(invesment[] memory) {
         require(userMapping[msg.sender].invesmentsToMe.length > 0, "There are no invesments made for you");
+        invesment[] memory returnArray = new invesment[](userMapping[msg.sender].invesmentsToMe.length);
+        //return the sum of the invesments from "invesmentsToMe" array
         bool allInactive = true;                                                                                    //used this variable to check if the listed invesments active or not
         for(uint i = 0; i < userMapping[msg.sender].invesmentsToMe.length; i++){
             uint invesmentNo = userMapping[msg.sender].invesmentsToMe[i];
+            returnArray[i] = invesments[invesmentNo];
             if(invesments[invesmentNo].isActive){
-                emit InvesmentInfo(invesments[invesmentNo].invester,invesments[invesmentNo].receiver , invesments[invesmentNo].amount, invesments[invesmentNo].timeOfInvesment,  invesments[invesmentNo].timeForRelease, invesments[invesmentNo].invesmentNo);
                 allInactive = false;
             }
         }
         require(!allInactive, "There are no invesments made for you");
+        return returnArray;
     }
 
-      function myInvesments() view public returns( invesment[] memory ) {
+    function myInvesments() view public returns( invesment[] memory ) {
         invesment[] memory returnMyInvesments = new invesment[](userMapping[msg.sender].myInvesments.length);
         for(uint i = 0; i < userMapping[msg.sender].myInvesments.length; i++){
             uint invesmentNo = userMapping[msg.sender].myInvesments[i];
@@ -173,7 +140,7 @@ contract Transactions{
         }
         return returnMyInvesments;
     }
-  
+
     function reverseInvesment(uint invesmentNo) payable public {
         //cancel an invesment
         require(invesments[invesmentNo].invester == msg.sender, "You are not the investor, only investors can cancel an invesment.");
@@ -183,33 +150,23 @@ contract Transactions{
         userMapping[msg.sender].funds = userMapping[msg.sender].funds + invesments[invesmentNo].amount;
     }
  
-       function makeInvesment(address  receiver, uint256 timeForRelease, uint amount) payable public {
+    function makeInvesment(address  receiver, uint timeForRelease) payable public {
         uint invesmentNo = invesments.length;
         userMapping[msg.sender].myInvesments.push(invesmentNo);
         userMapping[receiver].invesmentsToMe.push(invesmentNo);
-        emit InvesmentInfo(msg.sender,receiver,amount,block.timestamp,timeForRelease,invesmentNo);
-        invesments.push(invesment(msg.sender, receiver, amount , block.timestamp, timeForRelease, true, true, invesmentNo));
+        invesments.push(invesment(msg.sender, receiver, msg.value , block.timestamp, timeForRelease, true, true, invesmentNo));
         
     }
-   
 
     function withdrawInvesment(uint invesmentNo) payable public {
         require(invesments[invesmentNo].receiver == msg.sender, "This invesment is not for this address!");
         require(invesments[invesmentNo].isActive, "You can not withdraw from an inactive invesment.");
-        require( invesments[invesmentNo].timeForRelease  < block.timestamp, "You can not withdraw the funds yet!");
+        require((invesments[invesmentNo].timeOfInvesment + invesments[invesmentNo].timeForRelease) <  block.timestamp, "You can not withdraw the funds yet!");
         invesments[invesmentNo].isActive = false;
         payable(msg.sender).transfer(invesments[invesmentNo].amount);
-      
-    }
-
-    function logTimeForRelease(uint invesmentNo) view public returns(uint){
-        return invesments[invesmentNo].timeForRelease;
-    }
-      function logTimeForBlockTimeStamp() view public returns(uint){
-        return block.timestamp;
     }
     
-    function reviseInvesment(uint invesmentNo, uint amount, uint256 timeForRelease) public {
+    function reviseInvesment(uint invesmentNo, uint amount, uint timeForRelease) public {
         require(invesments[invesmentNo].invester == msg.sender, "You can not revise an invesment you did not make.");
         require(invesments[invesmentNo].isActive, "This is an inactive invesment.");
         require(invesments[invesmentNo].timeOfInvesment + timeForRelease >= block.timestamp, "You can not set an invesment to be relased in a past date.");
