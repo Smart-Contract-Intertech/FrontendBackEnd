@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
+import { useLocation } from "react-router-dom";
 
 const Input = ({  name, type, value, handleChange }) => (
     <input
@@ -18,7 +19,7 @@ const Input = ({  name, type, value, handleChange }) => (
 
 
 
-const NewTransfer = () => {
+const NewTransfer = (props) => {
   
     
     const {  sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
@@ -28,7 +29,9 @@ const NewTransfer = () => {
     let today = new Date().toISOString().slice(0, 10);
     
     console.log("xxxxxxxxxxxy");
-    console.log(formData);
+   
+
+
     console.log("xxxxxxxxxxxy");
     /*const handleChange = (e) => {
         const {name, value} = e.target;

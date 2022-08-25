@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 
 
 contract Transactions{
-
+uint256 transactionCount;
     struct user{
         address userAddress;
         address[] recipients;
@@ -117,7 +117,7 @@ contract Transactions{
 
 
     function invesmentsMadeToMe() public view returns(invesment[] memory) {
-        require(userMapping[msg.sender].invesmentsToMe.length > 0, "There are no invesments made for you");
+        //require(userMapping[msg.sender].invesmentsToMe.length > 0, "There are no invesments made for you");
         invesment[] memory returnArray = new invesment[](userMapping[msg.sender].invesmentsToMe.length);
         //return the sum of the invesments from "invesmentsToMe" array
         bool allInactive = true;                                                                                    //used this variable to check if the listed invesments active or not
@@ -128,7 +128,7 @@ contract Transactions{
                 allInactive = false;
             }
         }
-        require(!allInactive, "There are no invesments made for you");
+        //require(!allInactive, "There are no invesments made for you");
         return returnArray;
     }
 
@@ -154,6 +154,7 @@ contract Transactions{
         uint invesmentNo = invesments.length;
         userMapping[msg.sender].myInvesments.push(invesmentNo);
         userMapping[receiver].invesmentsToMe.push(invesmentNo);
+        transactionCount += 1;
         invesments.push(invesment(msg.sender, receiver, msg.value , block.timestamp, timeForRelease, true, true, invesmentNo));
         
     }
@@ -180,5 +181,8 @@ contract Transactions{
             invesments[invesmentNo].amount = amount;
         }
         invesments[invesmentNo].timeForRelease = timeForRelease;
+    }
+      function getTransactionCount() public view returns (uint256) {
+        return transactionCount;
     }
 }
