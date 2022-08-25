@@ -1,10 +1,10 @@
-import "./newtransfer.scss";
+import "./edit.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
 
-const Edit = ({name, type, value, handleChange}) => (
+const Input = ({name, type, value, handleChange}) => (
         <input
         type={type}
         step="0.0001"
@@ -15,7 +15,7 @@ const Edit = ({name, type, value, handleChange}) => (
         />
     );
 
-    const NewTransfer = () => {
+    const Edit = () => {
         const {  sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
         const [formErrors, setFormErrors] = useState({});
         /*const [formErrors, setFormErrors] = useState({});
@@ -106,4 +106,4 @@ const Edit = ({name, type, value, handleChange}) => (
         );
     };
 
-export default Edit;
+export default Input;
