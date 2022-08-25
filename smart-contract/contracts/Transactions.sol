@@ -175,7 +175,7 @@ uint256 transactionCount;
     function reviseInvesment(uint invesmentNo, uint amount, uint timeForRelease) public {
         require(invesments[invesmentNo].invester == msg.sender, "You can not revise an invesment you did not make.");
         require(invesments[invesmentNo].isActive, "This is an inactive invesment.");
-        require(invesments[invesmentNo].timeOfInvesment + timeForRelease >= block.timestamp, "You can not set an invesment to be relased in a past date.");
+        require( timeForRelease >= block.timestamp, "You can not set an invesment to be relased in a past date.");
         if(amount > invesments[invesmentNo].amount){
             require(userMapping[msg.sender].funds >= (amount - invesments[invesmentNo].amount), "Insufficent funds to revise invesment.");
             userMapping[msg.sender].funds =  userMapping[msg.sender].funds - (invesments[invesmentNo].amount - amount);
