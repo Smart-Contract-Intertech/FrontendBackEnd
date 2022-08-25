@@ -6,16 +6,25 @@ import { useState,useContext,useEffect } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from "../../utils/shortenAddress";
 import { Footer } from "antd/lib/layout/layout";
+import { ethers } from "ethers";
+import { contractABI, contractAddress } from "../../utils/constants";
+const { ethereum } = window;
+
+const createEthereumContract = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+  return transactionsContract;
+};
 
 
-
-
-const Datatable = () => {
+const Datatable2 = () => {
 
  
+  const {transactionsToMe,setformData } = useContext(TransactionContext);
   
   
-  const {transactions,setformData } = useContext(TransactionContext);
 
 
 
@@ -27,9 +36,12 @@ const Datatable = () => {
     "amount":"",
     "nickName":"",
   }
-  const handleResend = (id) => {
+  const handleWithdrawInvesment = async (id) => {
     
-    const rows=transactions.map((transaction, i) => (  
+    const transactionsContract = createEthereumContract();
+
+    
+    const rows=transactionsToMe.map((transaction, i) => (  
       {   
       id: i,
       username: shortenAddress(transaction.addressTo),
@@ -38,8 +50,18 @@ const Datatable = () => {
       age: transaction.amount,
       gonderimTarihi:transaction.investmentNo
       }))
+      const timeForRelase = await transactionsContract.dateTimeOfWithdraw(rows[id].gonderimTarihi);
+   
+      
 
-      setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
+
+      console.log("currentDate->");
+      console.log(timeForRelase);
+      console.log("currentDate<-");
+
+      const transactionHash = await transactionsContract.withdrawInvesment(rows[id].gonderimTarihi);
+
+      //setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
   };
 
   const actionColumn = [{
@@ -50,37 +72,28 @@ const Datatable = () => {
       
       return (
         <div className="cellAction">
-          <Link to="/users/test" style={{ textDecoration: "none" }}>
-            <div className="viewButton">Düzenle</div>
-          </Link>
+          
          
           <Link to="/users/newtransfer"  style={{ textDecoration: "none" }}>
             <div className="resendButton" 
-            onClick={() => handleResend(params.row.id)}>Tekrar Gönder </div>
+            onClick={() => handleWithdrawInvesment(params.row.id)}>Parayı Çek </div>
           </Link>
 
-          <div
-            className="deleteButton"
-            onClick={() => handleDelete(params.row.id)}
-          >
-            Sil
-          </div>
+         
         </div>
         
       );
     },
   },];
   return (
-    <div className="datatable">
+    <div className="datatable2">
       <div className="datatableTitle">
-        Gönderilenler
-        <Link to="/users/newtransfer" className="link">
-          Yeni Yatırım Oluştur<i></i>
-        </Link>
+        Bana Gönderilenler
+     
       </div>
       <DataGrid
         className="datagrid"
-        rows={transactions.reverse().map((transaction, i) => (  
+        rows={transactionsToMe.reverse().map((transaction, i) => (  
           {   
           id: i,
           username: shortenAddress(transaction.addressTo),
@@ -97,4 +110,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default Datatable2;

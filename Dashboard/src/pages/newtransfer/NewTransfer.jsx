@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
+import { useLocation } from "react-router-dom";
 
 const Input = ({  name, type, value, handleChange }) => (
     <input
@@ -12,20 +13,26 @@ const Input = ({  name, type, value, handleChange }) => (
       onChange={(e) => handleChange(e, name)}
       className="a"
       min={0}
+     
     />
   );
 
 
 
-const NewTransfer = () => {
+const NewTransfer = (props) => {
   
-   
+    
     const {  sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
     const [formErrors, setFormErrors] = useState({});
     /*const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);*/
     let today = new Date().toISOString().slice(0, 10);
+    
+    console.log("xxxxxxxxxxxy");
+   
 
+
+    console.log("xxxxxxxxxxxy");
     /*const handleChange = (e) => {
         const {name, value} = e.target;
         setformData({...formData, [name]: value});
@@ -72,6 +79,8 @@ const NewTransfer = () => {
                 <div className="top">
                     <h1>Yeni Yatırım</h1>
                 </div>
+
+     
                 <div className="bottom">
                     <div className="right">
                         {Object.keys(formErrors).length === 0 && isSubmit? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 
@@ -79,22 +88,22 @@ const NewTransfer = () => {
                         <form onSubmit={handleSubmit}>
                             <div name="myForm" className="formInput" key="">
                                 <label>İsim:</label>
-                                <Input  name="nickName" type="text" value={formData.name} handleChange={handleChange} />
+                                <Input  name="nickName" type="text" value={formData.nickName} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.nickName}</p>
                                 <br/>
                                 <label>Cüzdan Adresi:</label>
-                                <Input  name="addressTo" type="text" value={formData.name} handleChange={handleChange} />
+                                <Input  name="addressTo" type="text" value={formData.addressTo} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.addressTo}</p>
                                 <br/>
                                 <label>Miktar:</label>
-                                <Input  name="amount" type="number" value={formData.name} handleChange={handleChange} />
+                                <Input  name="amount" type="number" value={formData.amount} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.amount}</p>
                                 <br/>
                                 <label>Tarih:</label>
-                                <Input  name="gonderimTarihi" type="date" value={formData.name} handleChange={handleChange} />
+                                <Input   name="gonderimTarihi" type="date" value={formData.name} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.gonderimTarihi}</p>
                                 <br/>

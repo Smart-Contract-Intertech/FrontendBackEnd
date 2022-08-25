@@ -1,4 +1,4 @@
-.datatable {
+.datatable2 {
   height: 671px;
   padding: 20px;
   
@@ -40,15 +40,15 @@
     padding: 5px;
     border-radius: 5px;
 
-    &.COMPLETED {
+    &.active {
       background-color: rgba(0, 128, 0, 0.05);
       color: green;
     }
-    &.PENDING {
+    &.pending {
       background-color: rgba(255, 217, 0, 0.05);
       color: goldenrod;
     }
-    &.CANCELLED {
+    &.passive {
       background-color: rgba(255, 0, 0, 0.05);
       color: crimson;
     }
@@ -80,13 +80,6 @@
       border-radius: 5px;
       color: green;
       border: 1px dotted rgba(220, 20, 60, 0.6);
-      cursor: pointer;
-    }
-    .withdrawButton {
-      padding: 2px 5px;
-      border-radius: 5px;
-      color: darkblue;
-      border: 1px dotted rgba(0, 0, 139, 0.596);
       cursor: pointer;
     }
   }

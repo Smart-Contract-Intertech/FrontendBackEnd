@@ -14,7 +14,7 @@ const createEthereumContract = () => {
 };
 
 
-export const withdrawInvesment = async () => {
+export const withdrawInvesment = async (id) => {
 
     try {
         if (ethereum) {
@@ -25,7 +25,7 @@ export const withdrawInvesment = async () => {
           console.log(transactionId);
           */
           //const owedAmount = await transactionsContract.getAmount(0);
-          const transactionWithdrawn = await transactionsContract.withdrawInvesment(1);
+          const transactionWithdrawn = await transactionsContract.withdrawInvesment(id);
   
           console.log(`Loading - ${transactionWithdrawn.hash}`);
           await transactionWithdrawn.wait();

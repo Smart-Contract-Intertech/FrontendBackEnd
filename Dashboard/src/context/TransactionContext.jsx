@@ -24,7 +24,7 @@ export const TransactionsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
   const [transactions, setTransactions] = useState([]);
-  
+  const [transactionsToMe,setTransactionsToMe] =useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e, name) => {
@@ -54,8 +54,8 @@ export const TransactionsProvider = ({ children }) => {
      
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
-
-        const transactionHash = await transactionsContract.makeInvesment(addressTo,Number(new Date(gonderimTarihi)), {value: parsedAmount});
+        
+        const transactionHash = await transactionsContract.makeInvesment(addressTo,Math.floor(new Date(gonderimTarihi) / 1000), {value: parsedAmount});
 
         await transactionHash.wait();
         console.log("test 6");
@@ -114,19 +114,32 @@ export const TransactionsProvider = ({ children }) => {
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
-          gonderimTarihi: new Date(parseInt(transaction.timeForRelease)).toLocaleDateString(),
+          gonderimTarihi: new Date(parseInt(transaction.timeForRelease*1000)).toLocaleDateString(),
+          investmentNo:transaction.invesmentNo,
+        })); 
+
+        
+      const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
+        const structuredTransactionsToMe = toMeTransactions.map((transaction) => ({
+          addressTo: transaction.invester,
+          addressFrom: transaction.receiver,
+          amount: parseInt(transaction.amount._hex) / (10 ** 18),
+          gonderimTarihi: new Date(parseInt(transaction.timeForRelease*1000)).toLocaleDateString(),
           investmentNo:transaction.invesmentNo,
         })); 
         //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");
-        console.log(transactionsContract.logTimeForRelease(0));
+        //console.log(transactionsContract.logTimeForRelease(0));
         console.log("logTimeForBlockTimeStamp");
-        console.log(transactionsContract.logTimeForBlockTimeStamp());
+        //  console.log(transactionsContract.logTimeForBlockTimeStamp());
         
         console.log("------------");
-        console.log(structuredTransactions);
+        console.log(structuredTransactionsToMe);
         console.log("++++++++++++");
         setTransactions(structuredTransactions);
+        console.log("////////////");
+        
+        setTransactionsToMe(structuredTransactionsToMe);
         console.log("control 3");
 
       } else {
@@ -189,7 +202,8 @@ export const TransactionsProvider = ({ children }) => {
         setformData,
         formData,
         handleChange,
-   
+        transactionsToMe,
+        setTransactionsToMe,
         isSubmit, 
         setIsSubmit
       }}
