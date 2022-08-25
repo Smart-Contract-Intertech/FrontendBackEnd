@@ -132,6 +132,11 @@ uint256 transactionCount;
         return returnArray;
     }
 
+
+    function dateTimeOfWithdraw(uint index) view public returns (uint dateTimeOfWithdrawint){
+        return invesments[index].timeForRelease;
+    }
+
     function myInvesments() view public returns( invesment[] memory ) {
         invesment[] memory returnMyInvesments = new invesment[](userMapping[msg.sender].myInvesments.length);
         for(uint i = 0; i < userMapping[msg.sender].myInvesments.length; i++){
@@ -162,7 +167,7 @@ uint256 transactionCount;
     function withdrawInvesment(uint invesmentNo) payable public {
         require(invesments[invesmentNo].receiver == msg.sender, "This invesment is not for this address!");
         require(invesments[invesmentNo].isActive, "You can not withdraw from an inactive invesment.");
-        require((invesments[invesmentNo].timeOfInvesment + invesments[invesmentNo].timeForRelease) <  block.timestamp, "You can not withdraw the funds yet!");
+        require( invesments[invesmentNo].timeForRelease <  block.timestamp, "You can not withdraw the funds yet!");
         invesments[invesmentNo].isActive = false;
         payable(msg.sender).transfer(invesments[invesmentNo].amount);
     }
