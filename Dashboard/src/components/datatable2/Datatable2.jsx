@@ -51,14 +51,10 @@ const Datatable2 = () => {
       age: transaction.amount,
       gonderimTarihi:transaction.investmentNo
       }))
-      const timeForRelase = await transactionsContract.dateTimeOfWithdraw(rows[id].gonderimTarihi);
+      //const timeForRelase = await transactionsContract.dateTimeOfWithdraw(rows[id].gonderimTarihi);
    
       
 
-
-      console.log("currentDate->");
-      console.log(timeForRelase);
-      console.log("currentDate<-");
 
       const transactionHash = await transactionsContract.withdrawInvesment(rows[id].gonderimTarihi);
 
