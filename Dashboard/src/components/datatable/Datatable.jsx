@@ -10,9 +10,6 @@ import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../../utils/constants";
 import { deleteTransaction } from "../../context/TransactionReversal";
 
-
-
-
 const { ethereum } = window;
 
 const Datatable = () => {

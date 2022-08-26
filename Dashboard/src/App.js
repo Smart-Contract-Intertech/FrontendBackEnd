@@ -25,7 +25,6 @@ function App() {
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
-<<<<<<< Updated upstream
               <Route
                 path="newtransfer"
                 element={<NewTransfer/>}
@@ -34,10 +33,8 @@ function App() {
                 path="edit"
                 element={<Edit/>}
               />
-=======
               <Route path="newtransfer" element={<NewTransfer/>} />
               <Route path="edit" element={<Edit/>} />
->>>>>>> Stashed changes
             </Route>
             <Route path="products">
               <Route index element={<List2 />} />
