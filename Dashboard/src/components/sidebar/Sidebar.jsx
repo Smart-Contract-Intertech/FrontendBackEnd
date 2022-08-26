@@ -1,6 +1,7 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
+import InfoIcon from '@mui/icons-material/Info';
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -53,8 +54,16 @@ const Sidebar = () => {
               <span>Bana Gönderilenler</span>
             </li>
           </Link>
+          
+          <p className="title">Hakkımızda</p>
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <li>
+              <InfoIcon className="icon" />
+              <span>Hakkımızda</span>
+            </li>
+          </Link>
+
           <p className="title">USEFUL</p>
-      
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>

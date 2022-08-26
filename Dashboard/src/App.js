@@ -1,5 +1,6 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import AboutUs from "./pages/aboutus/AboutUs";
 import List from "./pages/list/List";
 import List2 from "./pages/list2/List2";
 import Single from "./pages/single/Single";
@@ -28,7 +29,7 @@ function App() {
                 path="newtransfer"
                 element={<NewTransfer/>}
               />
-              <Route
+            <Route
                 path="edit"
                 element={<Edit/>}
               />
@@ -41,6 +42,7 @@ function App() {
                 element={<New inputs={productInputs} title="Add New Product" />}
               />
             </Route>
+            <Route path="about" element={<AboutUs />} />
           </Route>
         </Routes>
       </BrowserRouter>

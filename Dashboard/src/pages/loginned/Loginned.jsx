@@ -20,7 +20,7 @@ const Loginned = () => {
         <div className="container-fluid mb-3">
           <Chart
             type="pie"
-            width={1349}
+            width={1200}
             height={450}
             series={[30, 30, 40]}
             options={{
@@ -32,7 +32,7 @@ const Loginned = () => {
         </div>
         <div className="charts">
           <TradingViewWidget
-            width={1349}
+            width={1200}
             symbol="BINANCE:ETHUSDT"
             theme={Themes.LIGHT}
             locale="en"
