@@ -5,7 +5,7 @@ import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
 import { useLocation } from "react-router-dom";
 
-const Input = ({  name, type, value, handleChange }) => (
+const Input = ({ name, type, value, handleChange }) => (
     <input
       type={type}
       step="0.0001"
@@ -13,16 +13,11 @@ const Input = ({  name, type, value, handleChange }) => (
       onChange={(e) => handleChange(e, name)}
       className="a"
       min={0}
-     
     />
-  );
-
-
+);
 
 const NewTransfer = (props) => {
-  
-    
-    const {  sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
+    const {sendTransaction, formData, setformData ,handleChange,isSubmit, setIsSubmit} = useContext(TransactionContext);
     const [formErrors, setFormErrors] = useState({});
     /*const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);*/
@@ -30,8 +25,6 @@ const NewTransfer = (props) => {
     
     console.log("xxxxxxxxxxxy");
    
-
-
     console.log("xxxxxxxxxxxy");
     /*const handleChange = (e) => {
         const {name, value} = e.target;
@@ -44,7 +37,6 @@ const NewTransfer = (props) => {
         //setFormErrors(validate(formData));
         //setIsSubmit(true);
         sendTransaction();
-        
     };
 
     const validate = (values) => {
@@ -79,8 +71,6 @@ const NewTransfer = (props) => {
                 <div className="top">
                     <h1>Yeni Yatırım</h1>
                 </div>
-
-     
                 <div className="bottom">
                     <div className="right">
                         {Object.keys(formErrors).length === 0 && isSubmit? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-
 import { contractABI, contractAddress } from "../utils/constants";
 import { parse } from "@ethersproject/transactions";
 
 export const TransactionContext = React.createContext();
-
 
 const { ethereum } = window;
 
@@ -30,7 +28,6 @@ export const TransactionsProvider = ({ children }) => {
   const handleChange = (e, name) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
-
 
   const sendTransaction = async () => {
     try {
@@ -78,6 +75,53 @@ export const TransactionsProvider = ({ children }) => {
       throw new Error("No ethereum object");
     }
   };
+
+  const editTransaction = async (id) => {
+    try {
+      if (ethereum) {
+        const { addressTo, amount, nickName, gonderimTarihi } = formData;
+        console.log("test 1");
+        const transactionsContract = createEthereumContract();
+        console.log("test 2");
+        const parsedAmount = ethers.utils.parseEther(amount);
+        console.log("test 3");
+        /*await ethereum.request({
+          method: "eth_sendTransaction",
+          params: [{
+            from: currentAccount,
+            to: addressTo,
+            gas: "0x5208",
+            value: parsedAmount._hex,
+          }],
+        });*/
+        console.log("test 4");
+     
+        console.log(Number(new Date(gonderimTarihi)));
+        console.log("test 5");
+        
+        const transactionHash = await transactionsContract.reviseInvesment(id, {value: parsedAmount}, Math.floor(new Date(gonderimTarihi) / 1000));
+
+        await transactionHash.wait();
+        console.log("test 6");
+        setIsLoading(true);
+        console.log(`Loading - ${transactionHash.hash}`);
+        await transactionHash.wait();
+        console.log(`Success - ${transactionHash.hash}`);
+        setIsLoading(false);
+
+        const transactionsCount = await transactionsContract.getTransactionCount();
+
+        setTransactionCount(transactionsCount.toNumber());
+        window.location.reload();
+      } else {
+        console.log("No ethereum object");
+      }
+    } catch (error) {
+      console.log(error);
+
+      throw new Error("No ethereum object");
+    }
+};
   
   const checkIfWalletIsConnect = async () => {
     try {
@@ -87,11 +131,9 @@ export const TransactionsProvider = ({ children }) => {
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-
- 
         getAllInvesments();
-
-      } else {
+      } 
+      else {
         console.log("No accounts found");
       }
     } catch (error) {
@@ -120,10 +162,7 @@ export const TransactionsProvider = ({ children }) => {
           name: transaction.name,
         })); 
 
-
-     
-        
-      const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
+        const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
         const structuredTransactionsToMe = toMeTransactions.map((transaction) => ({
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
@@ -139,7 +178,6 @@ export const TransactionsProvider = ({ children }) => {
         console.log("logTimeForBlockTimeStamp");
         //  console.log(transactionsContract.logTimeForBlockTimeStamp());
         
-
         console.log("------------");
         console.log(structuredTransactionsToMe);
         console.log("++++++++++++");
@@ -151,7 +189,8 @@ export const TransactionsProvider = ({ children }) => {
         setTransactionsToMe(structuredTransactionsToMe);
         console.log("control 3");
 
-      } else {
+      } 
+      else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
@@ -174,7 +213,6 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
 
-
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
@@ -189,8 +227,6 @@ export const TransactionsProvider = ({ children }) => {
       throw new Error("No ethereum object");
     }
   };
-
-
 
   useEffect(() => {
     console.log("deneme");
@@ -208,6 +244,7 @@ export const TransactionsProvider = ({ children }) => {
          currentAccount,
         isLoading,
         sendTransaction,
+        editTransaction,
         setformData,
         formData,
         handleChange,
