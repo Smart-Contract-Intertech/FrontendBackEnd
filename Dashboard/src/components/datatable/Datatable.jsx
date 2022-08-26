@@ -6,9 +6,19 @@ import { useState,useContext,useEffect } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from "../../utils/shortenAddress";
 import { Footer } from "antd/lib/layout/layout";
+import { ethers } from "ethers";
+import { contractABI, contractAddress } from "../../utils/constants";
+const { ethereum } = window;
 
 
 
+const createEthereumContract = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+  return transactionsContract;
+};
 
 const Datatable = () => {
 
@@ -18,9 +28,34 @@ const Datatable = () => {
   const {transactions,setformData } = useContext(TransactionContext);
 
 
+  const handleDelete = async (id) => {
 
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
+
+ 
+    const transactionsContract = createEthereumContract();
+
+    
+    const rows=transactions.map((transaction, i) => (  
+      {   
+      id: i,
+      username: shortenAddress(transaction.addressTo),
+      status: "active",
+      email: "1snow@gmail.com",   
+      age: transaction.amount,
+      gonderimTarihi:transaction.investmentNo
+      }))
+   
+
+      const transactionDeleted = await transactionsContract.reverseInvesment(rows[id].gonderimTarihi);
+
+      await transactionDeleted.wait();
+
+      console.log(`Loading - ${transactionDeleted.hash}`);
+      await transactionDeleted.wait();
+      console.log(`Success - ${transactionDeleted.hash}`);
+
+      window.location.reload();
+
   };
 
   const resendState = {
@@ -29,6 +64,8 @@ const Datatable = () => {
   }
   const handleResend = (id) => {
     
+
+   
     const rows=transactions.map((transaction, i) => (  
       {   
       id: i,
@@ -80,14 +117,14 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={transactions.reverse().map((transaction, i) => (  
+        rows={transactions.map((transaction, i) => (  
           {   
           id: i,
           username: shortenAddress(transaction.addressTo),
           status: "active",
           email: "1snow@gmail.com",
           age: transaction.amount,
-          gonderimTarihi:transaction.gonderimTarihi
+          gonderimTarihi:transaction.investmentNo
           }))}
         columns={userColumns.concat(actionColumn)}
         pageSize={10}

@@ -49,7 +49,7 @@ const TransactionsCard = ({ addressTo, addressFrom,amount }) => {
                     <p className="b">From: {shortenAddress(addressFrom)}</p>
 
 
-                    <p className="b">To: {shortenAddress(addressTo)}</p>
+                  
 
                     <p className="b">Amount: {amount} ETH</p>
                  

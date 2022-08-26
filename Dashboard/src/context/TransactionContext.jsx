@@ -55,7 +55,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
         
-        const transactionHash = await transactionsContract.makeInvesment(addressTo,Math.floor(new Date(gonderimTarihi) / 1000), {value: parsedAmount});
+        const transactionHash = await transactionsContract.makeInvesment(addressTo,Math.floor(new Date(gonderimTarihi) / 1000),"isim", {value: parsedAmount});
 
         await transactionHash.wait();
         console.log("test 6");

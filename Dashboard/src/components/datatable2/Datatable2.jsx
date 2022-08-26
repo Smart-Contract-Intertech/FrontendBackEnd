@@ -40,6 +40,7 @@ const Datatable2 = () => {
     
     const transactionsContract = createEthereumContract();
 
+   
     
     const rows=transactionsToMe.map((transaction, i) => (  
       {   
@@ -93,14 +94,14 @@ const Datatable2 = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={transactionsToMe.reverse().map((transaction, i) => (  
+        rows={transactionsToMe.map((transaction, i) => (  
           {   
           id: i,
           username: shortenAddress(transaction.addressTo),
           status: "active",
           email: "1snow@gmail.com",
           age: transaction.amount,
-          gonderimTarihi:transaction.gonderimTarihi
+          gonderimTarihi:transaction.investmentNo
           }))}
         columns={userColumns.concat(actionColumn)}
         pageSize={10}
