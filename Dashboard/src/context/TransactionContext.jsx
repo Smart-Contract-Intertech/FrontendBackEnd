@@ -55,7 +55,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
         
-        const transactionHash = await transactionsContract.makeInvesment(addressTo,Math.floor(new Date(gonderimTarihi) / 1000),"isim", {value: parsedAmount});
+        const transactionHash = await transactionsContract.makeInvesment(addressTo,Math.floor(new Date(gonderimTarihi) / 1000),nickName, {value: parsedAmount});
 
         await transactionHash.wait();
         console.log("test 6");
@@ -116,6 +116,8 @@ export const TransactionsProvider = ({ children }) => {
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
           gonderimTarihi: new Date(parseInt(transaction.timeForRelease*1000)).toLocaleDateString(),
           investmentNo:transaction.invesmentNo,
+          status: transaction.invesmentStatus,
+          name: transaction.name,
         })); 
 
 
@@ -128,6 +130,8 @@ export const TransactionsProvider = ({ children }) => {
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
           gonderimTarihi: new Date(parseInt(transaction.timeForRelease*1000)).toLocaleDateString(),
           investmentNo:transaction.invesmentNo,
+          name: transaction.name,
+          status: transaction.invesmentStatus,
         })); 
         //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");

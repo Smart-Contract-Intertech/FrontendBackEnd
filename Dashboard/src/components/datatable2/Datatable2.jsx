@@ -21,16 +21,9 @@ const createEthereumContract = () => {
 
 const Datatable2 = () => {
 
- 
+  const sta = ["PENDING", "COMPLETED", "CANCELLED"];
+
   const {transactionsToMe,setformData } = useContext(TransactionContext);
-  
-  
-
-
-
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
-  };
 
   const resendState = {
     "amount":"",
@@ -46,8 +39,8 @@ const Datatable2 = () => {
       {   
       id: i,
       username: shortenAddress(transaction.addressTo),
-      status: "active",
-      email: "1snow@gmail.com",   
+      status: transaction.status,
+      email: transaction.name,   
       age: transaction.amount,
       gonderimTarihi:transaction.investmentNo
       }))
@@ -94,10 +87,11 @@ const Datatable2 = () => {
           {   
           id: i,
           username: shortenAddress(transaction.addressTo),
-          status: "active",
-          email: "1snow@gmail.com",
+          status: sta[transaction.status],
+          email: transaction.name,
           age: transaction.amount,
-          gonderimTarihi:transaction.investmentNo
+          gonderimTarihi:transaction.gonderimTarihi,
+          investmentNo: transaction.investmentNo,
           }))}
         columns={userColumns.concat(actionColumn)}
         pageSize={10}

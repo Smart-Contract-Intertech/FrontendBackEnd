@@ -8,44 +8,42 @@ import { shortenAddress } from "../../utils/shortenAddress";
 import { Footer } from "antd/lib/layout/layout";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../../utils/constants";
+import { deleteTransaction } from "../../context/TransactionReversal";
+
+
+
+
 const { ethereum } = window;
-
-
-
-const createEthereumContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-  return transactionsContract;
-};
 
 const Datatable = () => {
 
- 
+  const createEthereumContract = () => {
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
   
+    return transactionsContract;
+  };
+
+  const sta = ["PENDING", "COMPLETED", "CANCELLED"];
   
   const {transactions,setformData } = useContext(TransactionContext);
 
 
   const handleDelete = async (id) => {
 
-
- 
     const transactionsContract = createEthereumContract();
-
     
     const rows=transactions.map((transaction, i) => (  
       {   
       id: i,
-      username: shortenAddress(transaction.addressTo),
-      status: "active",
-      email: "1snow@gmail.com",   
+      username: transaction.addressFrom,
+      status: sta[transaction.status],
+      email: transaction.name,
       age: transaction.amount,
       gonderimTarihi:transaction.investmentNo
       }))
-   
-
+      
       const transactionDeleted = await transactionsContract.reverseInvesment(rows[id].gonderimTarihi);
 
       await transactionDeleted.wait();
@@ -55,6 +53,7 @@ const Datatable = () => {
       console.log(`Success - ${transactionDeleted.hash}`);
 
       window.location.reload();
+      
 
   };
 
@@ -63,17 +62,15 @@ const Datatable = () => {
     "nickName":"",
   }
   const handleResend = (id) => {
-    
-
    
     const rows=transactions.map((transaction, i) => (  
       {   
       id: i,
-      username: shortenAddress(transaction.addressTo),
-      status: "active",
-      email: "1snow@gmail.com",   
+      username: transaction.addressFrom,
+      status: sta[transaction.status],
+      email: transaction.name,
       age: transaction.amount,
-      gonderimTarihi:transaction.investmentNo
+      gonderimTarihi:transaction.investmentNo,
       }))
 
       setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
@@ -120,11 +117,12 @@ const Datatable = () => {
         rows={transactions.map((transaction, i) => (  
           {   
           id: i,
-          username: shortenAddress(transaction.addressTo),
-          status: "active",
-          email: "1snow@gmail.com",
+          username: transaction.addressFrom,
+          status: sta[transaction.status],
+          email: transaction.name,
           age: transaction.amount,
-          gonderimTarihi:transaction.investmentNo
+          gonderimTarihi:transaction.gonderimTarihi,
+          invesmentNo: transaction.investmentNo,
           }))}
         columns={userColumns.concat(actionColumn)}
         pageSize={10}
