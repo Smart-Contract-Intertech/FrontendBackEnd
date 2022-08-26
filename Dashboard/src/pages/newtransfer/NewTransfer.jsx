@@ -13,6 +13,8 @@ const Input = ({ name, type, value, handleChange }) => (
       onChange={(e) => handleChange(e, name)}
       className="a"
       min={0}
+      
+      
     />
 );
 
@@ -93,7 +95,7 @@ const NewTransfer = (props) => {
                                 <p style={{color:'red'}}>{formErrors.amount}</p>
                                 <br/>
                                 <label>Tarih:</label>
-                                <Input   name="gonderimTarihi" type="date" value={formData.name} handleChange={handleChange} />
+                                <Input   name="gonderimTarihi" type="date" value={formData.gonderimTarihi===""? new Date().toISOString().slice(0, 10): new Date(formData.gonderimTarihi*1000).toISOString().slice(0, 10)} handleChange={handleChange} />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.gonderimTarihi}</p>
                                 <br/>
