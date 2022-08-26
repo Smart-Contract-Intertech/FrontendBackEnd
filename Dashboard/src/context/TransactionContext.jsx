@@ -135,6 +135,22 @@ export const TransactionsProvider = ({ children }) => {
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
+        
+
+
+        setCurrentAccount();
+        console.log("rrrrrrrrrrrrrrrrrr");
+  
+        setBalanceInEth(accounts[0].balanceInEth);
+        ethers.getDefaultProvider('goerli').getBalance(accounts[0]).then((balance) => {
+          // convert a currency unit from wei to ether
+          console.log("tttttttttttttttttttt");
+          console.log(balance);
+          console.log("ffffffffffffffffffff");
+          setBalanceInEth(ethers.utils.formatEther(balance));
+         })
+
+
         getAllInvesments();
       } 
       else {
@@ -231,8 +247,8 @@ export const TransactionsProvider = ({ children }) => {
       if (!ethereum) return alert("Please install MetaMask.");
       console.log("connect wallet");
       const accounts = await ethereum.request({ method: "eth_requestAccounts", });
-
-      setCurrentAccount(accounts[0]);
+      
+ 
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -246,11 +262,8 @@ export const TransactionsProvider = ({ children }) => {
 
     checkIfWalletIsConnect();
     checkIfTransactionsExists();
-    ethers.getDefaultProvider('goerli').getBalance(contractAddress).then((balance) => {
-      // convert a currency unit from wei to ether
-      console.log(ethers.utils.formatEther(balance));
-      setBalanceInEth(ethers.utils.formatEther(balance));
-     })
+    
+ 
   }, [transactionCount]);
 
   return (
