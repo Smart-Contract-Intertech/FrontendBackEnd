@@ -13,23 +13,35 @@ const AboutUs = () => {
       <div className="aboutusContainer">
         <Navbar />
         <div className="about-section">
-          <h1><span style={{fontWeight: 'bold',color: 'white'}}>Hakkımızda</span></h1>
-          <p>25 günlük staj dönemimizde  merkeziyetsiz sisteme öenmli bir adım attık.</p>
+          <h1>
+            <span style={{ fontWeight: "bold", color: "white" }}>
+              Hakkımızda
+            </span>
+          </h1>
           <p>
-            Aşağıda profilleri belirtilen 9 kişilik bir ekip ile Smart Contract projesini hayata geçirdik.
+            25 günlük staj dönemimizde merkeziyetsiz sisteme öenmli bir adım
+            attık.
+          </p>
+          <p>
+            Aşağıda profilleri belirtilen 9 kişilik bir ekip ile Smart Contract
+            projesini hayata geçirdik.
           </p>
         </div>
 
-        <h2 style={{ textAlign: "center" ,fontWeight: 'bold',fontSize: "2rem"}}>Takımımız</h2>
+        <h2
+          style={{ textAlign: "center", fontWeight: "bold", fontSize: "2rem" }}
+        >
+          Takımımız
+        </h2>
         <div className="row">
           <div className="column">
             <div className="card">
               <img src={leon} alt="" width="400" height="250" />
               <div className="container">
-                <h2>Jane Doe</h2>
+                <h2>Erdem Çokatar</h2>
                 <p className="title">CEO & Founder</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>jane@example.com</p>
+                <p>erdemcokatar@gmail.com</p>
                 <p>
                   <button className="button">Contact</button>
                 </p>
@@ -41,10 +53,10 @@ const AboutUs = () => {
             <div className="card">
               <img src={honda} alt="" width="400" height="250" />
               <div className="container">
-                <h2>Mike Ross</h2>
+                <h2>Mustafa Şenol</h2>
                 <p className="title">Art Director</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
+                <p>mstfsnol@hotmail.com</p>
                 <p>
                   <button className="button">Contact</button>
                 </p>
@@ -56,10 +68,102 @@ const AboutUs = () => {
             <div className="card">
               <img src={pejo} alt="" width="400" height="250" />
               <div className="container">
-                <h2>John Doe</h2>
+                <h2>Ali Murat Kuşlu</h2>
                 <p className="title">Designer</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>john@example.com</p>
+                <p>alimuratkuslu@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">
+            <div className="card">
+              <img src={leon} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>Okan Torun</h2>
+                <p className="title">CEO & Founder</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>torun.okn@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column">
+            <div className="card">
+              <img src={honda} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>Yüksel Erin</h2>
+                <p className="title">Art Director</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>ykselerin@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column">
+            <div className="card">
+              <img src={pejo} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>Samet Başaran</h2>
+                <p className="title">Designer</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>samet.8basaran@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">
+            <div className="card">
+              <img src={leon} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>Berke Ayorak</h2>
+                <p className="title">CEO & Founder</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>berkeayorak@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column">
+            <div className="card">
+              <img src={honda} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>Oğuzhan</h2>
+                <p className="title">Art Director</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>ogyuak4@gmail.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column">
+            <div className="card">
+              <img src={pejo} alt="" width="400" height="250" />
+              <div className="container">
+                <h2>İrem Çiloğlu</h2>
+                <p className="title">Designer</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>irem-ciloglu@hotmail.com</p>
                 <p>
                   <button className="button">Contact</button>
                 </p>
