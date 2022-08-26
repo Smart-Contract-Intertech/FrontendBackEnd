@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import Chart from "react-apexcharts";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./loginned.scss";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
+import { TransactionContext } from "../../context/TransactionContext";
 
 const Loginned = () => {
+
+  const {gelenIslemde,gidenIslemde,balanceInEth } = useContext(TransactionContext);
   window.ethereum.on("accountsChanged", async () => {
     window.setTimeout(function () {
       window.location.href = "/";
@@ -22,11 +25,11 @@ const Loginned = () => {
             type="pie"
             width={1200}
             height={450}
-            series={[30, 30, 40]}
+            series={[gidenIslemde ,gelenIslemde , Number(balanceInEth)]}
             options={{
               noData: { text: "Empty Data" },
               // colors:["#f90000","#f0f"],
-              labels: ["Gelen Para", "Giden Para", "Varlık"],
+              labels: ["Giden İşlemde", "Gelen İşlemde", "Metamask Bakiyesi"],
             }}
           ></Chart>
         </div>

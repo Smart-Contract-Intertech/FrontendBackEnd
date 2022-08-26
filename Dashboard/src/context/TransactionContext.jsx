@@ -24,6 +24,10 @@ export const TransactionsProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [transactionsToMe,setTransactionsToMe] =useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
+  var [gidenIslemde,setGidenIslemde] = useState(0);
+  var [gelenIslemde,setGelenIslemde] = useState(0);
+  const [balanceInEth,setBalanceInEth] = useState(0);
+
 
   const handleChange = (e, name) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
@@ -152,7 +156,9 @@ export const TransactionsProvider = ({ children }) => {
         const availableTransactions = await transactionsContract.myInvesments();
         console.log("control 2");
         
-        const structuredTransactions = availableTransactions.map((transaction) => ({
+        const structuredTransactions = availableTransactions.map((transaction) => (
+          setGidenIslemde(gidenIslemde+=parseInt(transaction.amount._hex) / (10 ** 18)),
+          {
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
@@ -160,10 +166,15 @@ export const TransactionsProvider = ({ children }) => {
           investmentNo:transaction.invesmentNo,
           status: transaction.invesmentStatus,
           name: transaction.name,
-        })); 
+          
+        }));
+        
+        //structuredTransactions
 
         const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
-        const structuredTransactionsToMe = toMeTransactions.map((transaction) => ({
+        const structuredTransactionsToMe = toMeTransactions.map((transaction) => (
+          setGelenIslemde(gelenIslemde+=parseInt(transaction.amount._hex) / (10 ** 18)),
+          {
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
@@ -172,6 +183,8 @@ export const TransactionsProvider = ({ children }) => {
           name: transaction.name,
           status: transaction.invesmentStatus,
         })); 
+
+        
         //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");
         //console.log(transactionsContract.logTimeForRelease(0));
@@ -233,6 +246,11 @@ export const TransactionsProvider = ({ children }) => {
 
     checkIfWalletIsConnect();
     checkIfTransactionsExists();
+    ethers.getDefaultProvider('goerli').getBalance(contractAddress).then((balance) => {
+      // convert a currency unit from wei to ether
+      console.log(ethers.utils.formatEther(balance));
+      setBalanceInEth(ethers.utils.formatEther(balance));
+     })
   }, [transactionCount]);
 
   return (
@@ -251,8 +269,11 @@ export const TransactionsProvider = ({ children }) => {
         transactionsToMe,
         setTransactionsToMe,
         isSubmit, 
-        setIsSubmit
-      }}
+        setIsSubmit,
+        gidenIslemde,
+        gelenIslemde,
+        balanceInEth
+      }}  
     >
       {children}
     </TransactionContext.Provider>
