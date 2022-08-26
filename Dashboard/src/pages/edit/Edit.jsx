@@ -3,7 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
-import { TransactionEdit } from "../../context/TransactionEdit";
 
 const Input = ({name, type, value, handleChange}) => (
     <input

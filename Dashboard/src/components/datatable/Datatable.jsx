@@ -87,7 +87,7 @@ const Datatable = () => {
 
       //var editedDate = String(rows[id].tarih).substring(0, 2) +'/'+String(rows[id].tarih.substring(3, 5))+'/'+String(rows[id].tarih.substring(6, 10));
      // console.log(editedDate);
-      setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi, "nickName": rows[id].email, "amount": rows[id].age, "gonderimTarihi": rows[id].gonderimTarihi}));  
+      setformData((prevState) => ({ "addressTo": rows[id].username, "nickName": rows[id].email, "amount": rows[id].age, "gonderimTarihi": rows[id].gonderimTarihi}));  
   };
 
   const actionColumn = [{

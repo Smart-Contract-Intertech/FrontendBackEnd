@@ -34,6 +34,7 @@ uint256 transactionCount;
     address[] userAddresses;
     mapping(address => user) userMapping;
 
+
     //event newRegister(uint userNo);     //Solidity can only use return in its own code
     //We need events to communicate with front-end
 
@@ -154,7 +155,6 @@ uint256 transactionCount;
         
     }
 
-
      function withdrawInvesment(uint invesmentNo) payable public {
         require(invesments[invesmentNo].receiver == msg.sender, "This invesment is not for this address!");
         require(invesments[invesmentNo].invesmentStatus == Status.PENDING, "You can not withdraw from an inactive invesment.");
@@ -168,12 +168,12 @@ uint256 transactionCount;
         require(invesments[invesmentNo].invesmentStatus == Status.PENDING, "This is an inactive invesment.");
         require(timeForRelease >= block.timestamp, "You can not set an invesment to be relased in a past date.");
         if(amount > invesments[invesmentNo].amount){
-            require(userMapping[msg.sender].funds >= (amount - invesments[invesmentNo].amount), "Insufficent funds to revise invesment.");
-            userMapping[msg.sender].funds =  userMapping[msg.sender].funds - (invesments[invesmentNo].amount - amount);
+            require((msg.sender.balance) > (amount - invesments[invesmentNo].amount), "Insufficent funds to revise invesment.");
+            userMapping[msg.sender].funds =  (msg.sender.balance) - (invesments[invesmentNo].amount - amount);
             invesments[invesmentNo].amount = amount;
         }
         else{
-             userMapping[msg.sender].funds = userMapping[msg.sender].funds + (invesments[invesmentNo].amount - amount);
+             userMapping[msg.sender].funds = (msg.sender.balance) + (invesments[invesmentNo].amount - amount);
             invesments[invesmentNo].amount = amount;
         }
         invesments[invesmentNo].timeForRelease = timeForRelease;
