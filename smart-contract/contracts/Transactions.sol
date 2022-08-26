@@ -149,6 +149,7 @@ uint256 transactionCount;
         uint invesmentNo = invesments.length;
         userMapping[msg.sender].myInvesments.push(invesmentNo);
         userMapping[receiver].invesmentsToMe.push(invesmentNo);
+         transactionCount += 1;
         invesments.push(invesment(name, msg.sender, receiver, msg.value , block.timestamp, timeForRelease, Status.PENDING, invesmentNo));
         
     }
@@ -176,5 +177,8 @@ uint256 transactionCount;
             invesments[invesmentNo].amount = amount;
         }
         invesments[invesmentNo].timeForRelease = timeForRelease;
+    }
+       function getTransactionCount() public view returns (uint256) {
+        return transactionCount;
     }
 }
