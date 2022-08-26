@@ -147,7 +147,7 @@ export const TransactionsProvider = ({ children }) => {
           console.log("tttttttttttttttttttt");
           console.log(balance);
           console.log("ffffffffffffffffffff");
-          setBalanceInEth(ethers.utils.formatEther(balance));
+          setBalanceInEth(parseFloat(ethers.utils.formatEther(balance)).toFixed(3));
          })
 
 
