@@ -145,7 +145,7 @@ const AboutUs = () => {
             <div className="card">
               <img src={honda} alt="" width="400" height="250" />
               <div className="container">
-                <h2>Oğulcan</h2>
+                <h2>Oğulcan Yusuf Akçay</h2>
                 <p className="title">Art Director</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>ogyuak4@gmail.com</p>
