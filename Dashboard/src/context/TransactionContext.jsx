@@ -121,14 +121,14 @@ export const TransactionsProvider = ({ children }) => {
 
      
         
-      /*const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
+      const toMeTransactions = await transactionsContract.invesmentsMadeToMe();
         const structuredTransactionsToMe = toMeTransactions.map((transaction) => ({
           addressTo: transaction.invester,
           addressFrom: transaction.receiver,
           amount: parseInt(transaction.amount._hex) / (10 ** 18),
           gonderimTarihi: new Date(parseInt(transaction.timeForRelease*1000)).toLocaleDateString(),
           investmentNo:transaction.invesmentNo,
-        })); */
+        })); 
         //Math.floor(new Date(parseInt(transaction.timeForRelease)).getTime() / 1000)
         console.log("logTimeForRelease");
         //console.log(transactionsContract.logTimeForRelease(0));
@@ -137,14 +137,14 @@ export const TransactionsProvider = ({ children }) => {
         
 
         console.log("------------");
-        //console.log(structuredTransactionsToMe);
+        console.log(structuredTransactionsToMe);
         console.log("++++++++++++");
         console.log(structuredTransactions)
         console.log("xxxxxxxxxxxx");
         setTransactions(structuredTransactions);
         console.log("////////////");
         
-        //setTransactionsToMe(structuredTransactionsToMe);
+        setTransactionsToMe(structuredTransactionsToMe);
         console.log("control 3");
 
       } else {

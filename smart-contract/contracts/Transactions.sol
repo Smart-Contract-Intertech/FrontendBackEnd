@@ -118,7 +118,7 @@ uint256 transactionCount;
             returnArray[i] = invesments[invesmentNo];
             allInactive = false;
         }
-        require(!allInactive, "There are no invesments made for you");
+        //require(!allInactive, "There are no invesments made for you");
         return returnArray;
     }
 
