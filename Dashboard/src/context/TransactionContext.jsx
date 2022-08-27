@@ -83,7 +83,7 @@ export const TransactionsProvider = ({ children }) => {
   const editTransaction = async () => {
     try {
       if (ethereum) {
-        const { addressTo, amount, nickName, gonderimTarihi } = formData;
+        const { addressTo, amount, nickName, gonderimTarihi, id } = formData;
         console.log("test 1");
         const transactionsContract = createEthereumContract();
         console.log("test 2");
@@ -104,7 +104,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(Number(new Date(gonderimTarihi)));
         console.log("test 5");
         
-        const transactionHash = await transactionsContract.reviseInvesment(0,  parsedAmount, Math.floor(new Date(gonderimTarihi) / 1000));
+        const transactionHash = await transactionsContract.reviseInvesment(id, parsedAmount, Math.floor(new Date(gonderimTarihi) / 1000));
 
         await transactionHash.wait();
         console.log("test 6");
