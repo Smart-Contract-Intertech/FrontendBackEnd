@@ -88,34 +88,14 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createEthereumContract();
         console.log("test 2");
         const parsedAmount = parseInt(amount);
-        //const parsedAmount = ethers.utils.parseEther(amount);
-        console.log("test 3");
-        /*await ethereum.request({
-          method: "eth_sendTransaction",
-          params: [{
-            from: currentAccount,
-            to: addressTo,
-            gas: "0x5208",
-            value: parsedAmount._hex,
-          }],
-        });*/
-        console.log("test 4");
-     
-        console.log(Number(new Date(gonderimTarihi)));
-        console.log("test 5");
-        
         const transactionHash = await transactionsContract.reviseInvesment(id, parsedAmount, Math.floor(new Date(gonderimTarihi) / 1000));
-
         await transactionHash.wait();
-        console.log("test 6");
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
         await transactionHash.wait();
         console.log(`Success - ${transactionHash.hash}`);
         setIsLoading(false);
-
         const transactionsCount = await transactionsContract.getTransactionCount();
-
         setTransactionCount(transactionsCount.toNumber());
         window.location.reload();
       } else {
@@ -136,22 +116,11 @@ export const TransactionsProvider = ({ children }) => {
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        
-
-
         setCurrentAccount();
-        console.log("rrrrrrrrrrrrrrrrrr");
-  
         setBalanceInEth(accounts[0].balanceInEth);
-        ethers.getDefaultProvider('goerli').getBalance(accounts[0]).then((balance) => {
-          // convert a currency unit from wei to ether
-          console.log("tttttttttttttttttttt");
-          console.log(balance);
-          console.log("ffffffffffffffffffff");
+        ethers.getDefaultProvider('goerli').getBalance(accounts[0]).then((balance) => {      
           setBalanceInEth(parseFloat(ethers.utils.formatEther(balance)).toFixed(3));
          })
-
-
         getAllInvesments();
       } 
       else {
@@ -208,17 +177,10 @@ export const TransactionsProvider = ({ children }) => {
         console.log("logTimeForBlockTimeStamp");
         //  console.log(transactionsContract.logTimeForBlockTimeStamp());
         
-        console.log("------------");
         console.log(structuredTransactionsToMe);
-        console.log("++++++++++++");
         console.log(structuredTransactions)
-        console.log("xxxxxxxxxxxx");
         setTransactions(structuredTransactions);
-        console.log("////////////");
-        
         setTransactionsToMe(structuredTransactionsToMe);
-        console.log("control 3");
-
       } 
       else {
         console.log("Ethereum is not present");
@@ -248,8 +210,6 @@ export const TransactionsProvider = ({ children }) => {
       if (!ethereum) return alert("Please install MetaMask.");
       console.log("connect wallet");
       const accounts = await ethereum.request({ method: "eth_requestAccounts", });
-      
- 
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -259,12 +219,9 @@ export const TransactionsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("deneme");
-
     checkIfWalletIsConnect();
     checkIfTransactionsExists();
     
- 
   }, [transactionCount]);
 
   return (

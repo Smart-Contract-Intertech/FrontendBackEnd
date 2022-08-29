@@ -25,9 +25,7 @@ const NewTransfer = (props) => {
     const [isSubmit, setIsSubmit] = useState(false);*/
     let today = new Date().toISOString().slice(0, 10);
     
-    console.log("xxxxxxxxxxxy");
-   
-    console.log("xxxxxxxxxxxy");
+  
     /*const handleChange = (e) => {
         const {name, value} = e.target;
         setformData({...formData, [name]: value});
@@ -36,8 +34,8 @@ const NewTransfer = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //const { addressTo, amount, nickName ,gonderimTarihi} = formData;
-        //setFormErrors(validate(formData));
-        //setIsSubmit(true);
+        setFormErrors(validate(formData));
+        setIsSubmit(true);
         sendTransaction();
     };
 
@@ -91,12 +89,12 @@ const NewTransfer = (props) => {
                                 <br/>
                                 <label>Miktar:</label>
                                 <Input  name="amount" type="number" value={formData.amount} handleChange={handleChange} />
-                                <br/>
+                                    <br/>
                                 <p style={{color:'red'}}>{formErrors.amount}</p>
                                 <br/>
                                 <label>Tarih:</label>
                                 <Input   name="gonderimTarihi" type="date" 
-                                value={formData.gonderimTarihi/*formData.gonderimTarihi===""? new Date().toISOString().slice(0, 10): new Date(formData.gonderimTarihi).toISOString().slice(0, 10)*/} handleChange={handleChange}
+                                value={formData.gonderimTarihi} handleChange={handleChange}
                                 />
                                 <br/>
                                 <p style={{color:'red'}}>{formErrors.gonderimTarihi}</p>

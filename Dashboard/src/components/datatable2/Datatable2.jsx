@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns } from "../../datatablesource";
+import { userColumns } from "../../datatablesourceBanaGelenler";
 import { Link } from "react-router-dom";
 import { useState,useContext,useEffect } from "react";
 import { TransactionContext } from "../../context/TransactionContext";

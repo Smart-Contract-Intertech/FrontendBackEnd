@@ -70,7 +70,7 @@ const Datatable = () => {
       gonderimTarihi:transaction.investmentNo,
       }))
 
-      setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
+      setformData((prevState) => ({ "addressTo": rows[id].username ,"nickName": rows[id].email}));  
   };
 
   const handleEdit = (id) => {
@@ -85,8 +85,6 @@ const Datatable = () => {
       tarih:transaction.gonderimTarihi
       }));
 
-      //var editedDate = String(rows[id].tarih).substring(0, 2) +'/'+String(rows[id].tarih.substring(3, 5))+'/'+String(rows[id].tarih.substring(6, 10));
-     // console.log(editedDate);
       setformData((prevState) => ({ "addressTo": rows[id].username, "nickName": rows[id].email, "amount": rows[id].age, "gonderimTarihi": rows[id].gonderimTarihi, "id": rows[id].id}));  
   };
 
@@ -132,7 +130,7 @@ const Datatable = () => {
         rows={transactions.map((transaction, i) => (  
           {   
           id: i,
-          username: transaction.addressFrom,
+          username: shortenAddress(transaction.addressFrom),
           status: sta[transaction.status],
           email: transaction.name,
           age: transaction.amount,
