@@ -25,6 +25,11 @@ export const userColumns = [
     width: 100,
   },
   {
+    field: "rate",
+    headerName: "%",
+    width: 50,
+  },
+  {
     field: "gonderimTarihi",
     headerName: "Teslim Tarihi",
     width: 150,

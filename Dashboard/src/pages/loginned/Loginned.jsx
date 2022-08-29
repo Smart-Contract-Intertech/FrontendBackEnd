@@ -29,7 +29,7 @@ const Loginned = () => {
             options={{
               noData: { text: "Empty Data" },
               // colors:["#f90000","#f0f"],
-              labels: ["Giden İşlemde", "Gelen İşlemde", "Metamask Bakiyesi"],
+              labels: ["Giden İşlemler", "Gelen İşlemler", "Metamask Bakiyesi"],
             }}
           ></Chart>
         </div>
