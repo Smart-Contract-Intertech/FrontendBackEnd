@@ -19,7 +19,7 @@ const AboutUs = () => {
             </span>
           </h1>
           <p>
-            25 günlük staj dönemimizde merkeziyetsiz sisteme öenmli bir adım
+            25 günlük staj dönemimizde merkeziyetsiz sisteme önemli bir adım
             attık.
           </p>
           <p>
