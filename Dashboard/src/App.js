@@ -3,10 +3,7 @@ import Login from "./pages/login/Login";
 import AboutUs from "./pages/aboutus/AboutUs";
 import List from "./pages/list/List";
 import List2 from "./pages/list2/List2";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -22,24 +19,21 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="user" element={<Login />} />
-            <Route path="users">
+            <Route path="sent">
               <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
               <Route
                 path="newtransfer"
                 element={<NewTransfer/>}
               />
-            <Route
+              <Route
                 path="edit"
                 element={<Edit/>}
               />
               <Route path="newtransfer" element={<NewTransfer/>} />
               <Route path="edit" element={<Edit/>} />
             </Route>
-            <Route path="products">
+            <Route path="senttome">
               <Route index element={<List2 />} />
-              <Route path=":productId" element={<Single />} />
-              <Route path="new" element={<New inputs={productInputs} title="Add New Product" />} />
             </Route>
             <Route path="about" element={<AboutUs />} />
           </Route>

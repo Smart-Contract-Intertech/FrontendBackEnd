@@ -2,18 +2,14 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState,useContext,useEffect } from "react";
+import { useContext } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
-import { shortenAddress } from "../../utils/shortenAddress";
-import { Footer } from "antd/lib/layout/layout";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../../utils/constants";
-import { deleteTransaction } from "../../context/TransactionReversal";
 
 const { ethereum } = window;
 
 const Datatable = () => {
-
   const createEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
@@ -23,9 +19,7 @@ const Datatable = () => {
   };
 
   const sta = ["PENDING", "COMPLETED", "CANCELLED"];
-  
   const {transactions,setformData,balanceInEth } = useContext(TransactionContext);
-
 
   const handleDelete = async (id) => {
 
@@ -105,12 +99,12 @@ const Datatable = () => {
       
       return (
         <div className="cellAction">
-          <Link to="/users/edit" style={{ textDecoration: "none" }}>
+          <Link to="/sent/edit" style={{ textDecoration: "none" }}>
             <div className="viewButton"
             onClick={() => handleEdit(params.row.id)}>Düzenle</div>
           </Link>
          
-          <Link to="/users/newtransfer"  style={{ textDecoration: "none" }}>
+          <Link to="/sent/newtransfer"  style={{ textDecoration: "none" }}>
             <div className="resendButton" 
             onClick={() => handleResend(params.row.id)}>Tekrar Gönder </div>
           </Link>
@@ -130,7 +124,7 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Gönderilenler
-        <Link to="/users/newtransfer" className="link">
+        <Link to="/sent/newtransfer" className="link">
           Yeni Yatırım Oluştur<i></i>
         </Link>
       </div>
@@ -156,4 +150,3 @@ const Datatable = () => {
 };
 
 export default Datatable;
-

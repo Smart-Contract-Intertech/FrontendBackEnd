@@ -1,11 +1,9 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns } from "../../datatablesourceBanaGelenler";
-import { Link } from "react-router-dom";
-import { useState,useContext,useEffect } from "react";
+import { useContext } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from "../../utils/shortenAddress";
-import { Footer } from "antd/lib/layout/layout";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../../utils/constants";
 const { ethereum } = window;
@@ -18,23 +16,18 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-
 const Datatable2 = () => {
-
   const sta = ["PENDING", "COMPLETED", "CANCELLED"];
-
   const {transactionsToMe,setformData } = useContext(TransactionContext);
 
   const resendState = {
     "amount":"",
     "nickName":"",
   }
+
   const handleWithdrawInvesment = async (id) => {
-    
     const transactionsContract = createEthereumContract();
 
-   
-    
     const rows=transactionsToMe.map((transaction, i) => (  
       {   
       id: i,
@@ -45,12 +38,7 @@ const Datatable2 = () => {
       gonderimTarihi:transaction.investmentNo
       }))
       //const timeForRelase = await transactionsContract.dateTimeOfWithdraw(rows[id].gonderimTarihi);
-   
-      
-
-
       const transactionHash = await transactionsContract.withdrawInvesment(rows[id].gonderimTarihi);
-
       //setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
   };
 
@@ -59,19 +47,11 @@ const Datatable2 = () => {
     headerName: "Düzenle",
     width: 350,
     renderCell: (params) => {
-      
       return (
         <div className="cellAction">
-          
-         
-          <Link to="/users/newtransfer"  style={{ textDecoration: "none" }}>
-            <div className="resendButton" 
-            onClick={() => handleWithdrawInvesment(params.row.id)}>Parayı Çek </div>
-          </Link>
-
-         
+          <div className="resendButton" 
+          onClick={() => handleWithdrawInvesment(params.row.id)}>Parayı Çek </div>
         </div>
-        
       );
     },
   },];
@@ -79,7 +59,6 @@ const Datatable2 = () => {
     <div className="datatable2">
       <div className="datatableTitle">
         Bana Gönderilenler
-     
       </div>
       <DataGrid
         className="datagrid"

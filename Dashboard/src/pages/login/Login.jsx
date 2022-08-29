@@ -1,7 +1,5 @@
 import "./login.scss";
-import NotLoginned from "../notloginned/NotLoginned";
 import Loginned from "../loginned/Loginned";
-import { Web3Provider, wallet } from "ethers-react";
 
 const Login = () => {
   window.ethereum.on('accountsChanged', async () => {
