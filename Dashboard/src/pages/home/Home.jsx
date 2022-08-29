@@ -8,7 +8,7 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="listContainer">
-          <div className="listTitle">Mirasınızı Güvence Altına Alın..</div>
+          <div className="listTitle">Yatırımınızı Güvence Altına Alın..</div>
           <Landing />
         </div>
       </div>

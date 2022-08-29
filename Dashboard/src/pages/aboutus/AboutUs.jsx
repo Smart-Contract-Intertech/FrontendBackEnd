@@ -9,7 +9,6 @@ import Navbar from "../../components/navbar/Navbar";
 const AboutUs = () => {
   return (
     <div className="aboutus">
-      <Sidebar />
       <div className="aboutusContainer">
         <Navbar />
         <div className="about-section">

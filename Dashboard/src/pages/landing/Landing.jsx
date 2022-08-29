@@ -3,8 +3,9 @@ import main2 from '../image/main2.png';
 import main3 from '../image/main3.png';
 import main4 from '../image/main4.png';
 import main5 from '../image/main5.png';
-import main6 from '../image/Vector.png'
-import metamask from '../image/metamask.png'
+import main6 from '../image/Vector.png';
+import metamask from '../image/metamask.png';
+import landing from '../image/landing.jpg';
 import Container from 'react-bootstrap/Container';
 import { notification } from 'antd';
 import 'antd/dist/antd.min.css';
@@ -36,7 +37,6 @@ export default function MainPage(){
       notification['error']({
         message: 'Metamask Kurmanız Gerekiyor!'
       });
-
       if(browserName === "Chrome"){
         window.setTimeout(function () {
           window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en','_blank');
@@ -52,12 +52,20 @@ export default function MainPage(){
           window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en','_blank');
         }, 1500);
       }
-
       return;
     }
   }
+  
   return(
     <Container style ={{fontFamily:'sans-serif-medium', fontSize:20, color:'#9980EC', textAlign:'center'}}>
+      <img
+        src={landing}
+        alt=""
+        width="700"
+        height="445"
+      />
+      <br/>
+      <br/>
       <p>Metamask cüzdanınızı bağlayın.</p><br/>
       <img 
         src={main1} 
@@ -65,7 +73,7 @@ export default function MainPage(){
         width="400" 
         height="100"
       /><br/><br/>
-      <p>Mirasçılarınızı belirleyin.</p><br/>
+      <p>Yatırımınızı aktarmak istediğiniz insanları belirleyin.</p><br/>
       <img
         src={main2}
         alt=""
@@ -86,7 +94,7 @@ export default function MainPage(){
         width="125"
         height="175"
       /><br/><br/>
-      <p>MOIRA dağıtık etheryum ağıyla mirasınızı merkezi bir kurum olmadan <br/> belirlediğiniz tarihte belirlediğiniz cüzdana güvenle sizin için aktarsın.</p><br/>
+      <p>MOIRA dağıtık etheryum ağıyla yatırımlarınızı merkezi bir kurum olmadan <br/> belirlediğiniz tarihte belirlediğiniz cüzdana güvenle sizin için aktarsın.</p><br/>
       <img
         src={main5}
         alt=""

@@ -5,6 +5,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import React, {useCallback} from 'react';
 import {useNavigate,Link} from 'react-router-dom';
+import Logo from '../image/Logo.png';
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -14,6 +15,18 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="wrapper">
+        <div className="column">
+          <Link to="/user" style={{ textDecoration: "none" }}>
+            <img
+              alt="Anasayfa"
+              src={Logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            <span className="logo">MOIRA</span>
+          </Link>
+        </div>
         <div className="item">
         </div>
         <div className="items">

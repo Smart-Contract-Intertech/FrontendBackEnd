@@ -9,7 +9,6 @@ const Incoming = () => {
   const[defaultAmount,setDefaultAmount] = useState();
   const[defaultRemainingTime,setDefaultRemainingTime] = useState();
   let today = new Date().toISOString().slice(0, 10);
-
   //setDefaultRemainingTime(defaultReleaseTime-today);
 
   return (
