@@ -52,7 +52,6 @@ export default function MainPage(){
           window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en','_blank');
         }, 1500);
       }
-
       return;
     }
   }

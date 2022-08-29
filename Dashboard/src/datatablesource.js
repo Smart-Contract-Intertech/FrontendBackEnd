@@ -1,13 +1,11 @@
 export const userColumns = [
-  
   {
     field: "user",
     headerName: "Adres",
-    width: 230,
+    width: 250,
     renderCell: (params) => {
       return (
         <div >
-        
           {params.row.username}
         </div>
       );
@@ -16,23 +14,22 @@ export const userColumns = [
   {
     field: "email",
     headerName: "Takma Isim",
-    width: 230,
+    width: 200,
   },
-
   {
     field: "age",
     headerName: "ETH",
-    width: 100,
+    width: 170,
   },
   {
     field: "gonderimTarihi",
     headerName: "Teslim Tarihi",
-    width: 150,
+    width: 180,
   },
   {
     field: "status",
     headerName: "Durum",
-    width: 160,
+    width: 190,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>

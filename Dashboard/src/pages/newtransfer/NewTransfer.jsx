@@ -3,7 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { TransactionContext } from "../../context/TransactionContext";
 import { useState, useEffect ,useContext} from "react";
-import { useLocation } from "react-router-dom";
 
 const Input = ({ name, type, value, handleChange }) => (
     <input
@@ -13,8 +12,6 @@ const Input = ({ name, type, value, handleChange }) => (
       onChange={(e) => handleChange(e, name)}
       className="a"
       min={0}
-      
-      
     />
 );
 
@@ -25,7 +22,6 @@ const NewTransfer = (props) => {
     const [isSubmit, setIsSubmit] = useState(false);*/
     let today = new Date().toISOString().slice(0, 10);
     
-  
     /*const handleChange = (e) => {
         const {name, value} = e.target;
         setformData({...formData, [name]: value});
@@ -108,18 +104,5 @@ const NewTransfer = (props) => {
         </div>
     );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default NewTransfer;

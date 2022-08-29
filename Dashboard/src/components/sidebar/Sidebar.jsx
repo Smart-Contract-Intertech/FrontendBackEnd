@@ -1,11 +1,5 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Sent from "@mui/icons-material/EastOutlined";
 import Taken from "@mui/icons-material/WestOutlined";
 import { Link } from "react-router-dom";
@@ -40,13 +34,13 @@ const Sidebar = () => {
               </li>
             </Link>
           <p className="title">Aktarımlarım</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/sent" style={{ textDecoration: "none" }}>
             <li>
               <Sent className="icon" />
               <span>Benim Gönderdiklerim</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/sentToMe" style={{ textDecoration: "none" }}>
             <li>
               <Taken className="icon" />
               <span>Bana Gönderilenler</span>
