@@ -2,6 +2,12 @@ import "./aboutus.scss";
 import leon from "../image/leon.png";
 import pejo from "../image/pejo.png";
 import honda from "../image/honda.png";
+import Ali from "../image/ali.png";
+import Okan from "../image/okan.png";
+import Ogulcan from "../image/ogulcan.png";
+import Samet from "../image/samet.png";
+import Irem from "../image/irem.png";
+import Erdem from "../image/erdem.png";
 import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
@@ -35,45 +41,36 @@ const AboutUs = () => {
         <div className="row">
           <div className="column">
             <div className="card">
-              <img src={leon} alt="" width="400" height="250" />
+              <img src={Erdem} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Erdem Çokatar</h2>
-                <p className="title">CEO & Founder</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>erdemcokatar@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={honda} alt="" width="400" height="250" />
+              <img src={honda} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Mustafa Şenol</h2>
-                <p className="title">Art Director</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>mstfsnol@hotmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={pejo} alt="" width="400" height="250" />
+              <img src={Ali} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Ali Murat Kuşlu</h2>
-                <p className="title">Designer</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>alimuratkuslu@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>alimuratkuslu@gmail.com</p>        
               </div>
             </div>
           </div>
@@ -81,45 +78,36 @@ const AboutUs = () => {
         <div className="row">
           <div className="column">
             <div className="card">
-              <img src={leon} alt="" width="400" height="250" />
+              <img src={Okan} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Okan Torun</h2>
-                <p className="title">CEO & Founder</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>torun.okn@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>torun.okn@gmail.com</p>          
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={honda} alt="" width="400" height="250" />
+              <img src={honda} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Yüksel Erin</h2>
-                <p className="title">Art Director</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>ykselerin@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>ykselerin@gmail.com</p>          
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={pejo} alt="" width="400" height="250" />
+              <img src={Samet} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Samet Başaran</h2>
-                <p className="title">Designer</p>
+                <p className="title">İş Analisti</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>samet.8basaran@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>samet.8basaran@gmail.com</p>        
               </div>
             </div>
           </div>
@@ -127,45 +115,36 @@ const AboutUs = () => {
         <div className="row">
           <div className="column">
             <div className="card">
-              <img src={leon} alt="" width="400" height="250" />
+              <img src={leon} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Berke Ayorak</h2>
-                <p className="title">CEO & Founder</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>berkeayorak@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>berkeayorak@gmail.com</p>           
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={honda} alt="" width="400" height="250" />
+              <img src={Ogulcan} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Oğulcan Yusuf Akçay</h2>
-                <p className="title">Art Director</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>ogyuak4@gmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>ogyuak4@gmail.com</p>         
               </div>
             </div>
           </div>
 
           <div className="column">
             <div className="card">
-              <img src={pejo} alt="" width="400" height="250" />
+              <img src={Irem} alt="" width="400" height="350" />
               <div className="container">
                 <h2>İrem Çiloğlu</h2>
-                <p className="title">Designer</p>
+                <p className="title">Yazılım Geliştirici</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>irem-ciloglu@hotmail.com</p>
-                <p>
-                  <button className="button">Contact</button>
-                </p>
+                <p>irem-ciloglu@hotmail.com</p>          
               </div>
             </div>
           </div>
