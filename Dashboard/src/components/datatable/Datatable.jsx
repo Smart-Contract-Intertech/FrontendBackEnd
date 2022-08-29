@@ -38,7 +38,7 @@ const Datatable = () => {
       status: sta[transaction.status],
       email: transaction.name,
       age: transaction.amount,
-      rate:((transaction.amount/balanceInEth)*100).toFixed(2),
+                rate:((transaction.amount/balanceInEth)*100).toFixed(2),
 
       gonderimTarihi:transaction.investmentNo
       }))
