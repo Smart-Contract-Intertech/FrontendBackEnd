@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { TransactionContext } from "../../context/TransactionContext";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../../utils/constants";
+import {shortenAddress} from "../../utils/shortenAddress";
 
 const { ethereum } = window;
 
@@ -45,17 +46,17 @@ const Datatable = () => {
       await transactionDeleted.wait();
       console.log(`Success - ${transactionDeleted.hash}`);
 
-      window.location.reload();
+      //window.location.reload();
       
-
   };
 
   const resendState = {
     "amount":"",
     "nickName":"",
   }
-  const handleResend = (id) => {
+  const handleResend = async(id) => {
    
+    await handleDelete(id);
     const rows=transactions.map((transaction, i) => (  
       {   
       id: i,
@@ -68,9 +69,9 @@ const Datatable = () => {
       gonderimTarihi:transaction.investmentNo,
       }))
 
-      setformData((prevState) => ({ "addressTo": rows[id].gonderimTarihi ,"nickName": rows[id].email}));  
+      setformData((prevState) => ({ "amount": rows[id].age,"addressTo": rows[id].username ,"nickName": rows[id].email}));  
   };
-
+  
   const handleEdit = (id) => {
     const rows=transactions.map((transaction, i) => (  
       {   
@@ -133,7 +134,7 @@ const Datatable = () => {
         rows={transactions.map((transaction, i) => (  
           {   
           id: i,
-          username: transaction.addressFrom,
+          username:  shortenAddress(transaction.addressFrom),
           status: sta[transaction.status],
           email: transaction.name,
           age: transaction.amount,

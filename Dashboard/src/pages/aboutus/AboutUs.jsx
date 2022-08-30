@@ -8,6 +8,8 @@ import Ogulcan from "../image/ogulcan.png";
 import Samet from "../image/samet.png";
 import Irem from "../image/irem.png";
 import Erdem from "../image/erdem.png";
+import Mustafa from "../image/mustafa.png";
+import Anonim from "../image/anonim.jpg";
 import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
@@ -53,7 +55,7 @@ const AboutUs = () => {
 
           <div className="column">
             <div className="card">
-              <img src={honda} alt="" width="400" height="350" />
+              <img src={Mustafa} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Mustafa Şenol</h2>
                 <p className="title">Yazılım Geliştirici</p>
@@ -90,7 +92,7 @@ const AboutUs = () => {
 
           <div className="column">
             <div className="card">
-              <img src={honda} alt="" width="400" height="350" />
+              <img src={Anonim} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Yüksel Erin</h2>
                 <p className="title">Yazılım Geliştirici</p>
@@ -115,7 +117,7 @@ const AboutUs = () => {
         <div className="row">
           <div className="column">
             <div className="card">
-              <img src={leon} alt="" width="400" height="350" />
+              <img src={Anonim} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Berke Ayorak</h2>
                 <p className="title">Yazılım Geliştirici</p>
