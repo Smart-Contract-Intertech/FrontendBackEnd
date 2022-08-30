@@ -59,7 +59,6 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Mustafa Şenol</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>mstfsnol@hotmail.com</p>
               </div>
             </div>
