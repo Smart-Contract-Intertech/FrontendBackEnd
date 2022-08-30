@@ -1,6 +1,5 @@
 import "./aboutus.scss";
 import leon from "../image/leon.png";
-import pejo from "../image/pejo.png";
 import honda from "../image/honda.png";
 import Ali from "../image/ali.png";
 import Okan from "../image/okan.png";
@@ -11,12 +10,13 @@ import Erdem from "../image/erdem.png";
 import Mustafa from "../image/mustafa.png";
 import Anonim from "../image/anonim.jpg";
 import React from "react";
-import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 const AboutUs = () => {
   return (
     <div className="aboutus">
+      <Sidebar />
       <div className="aboutusContainer">
         <Navbar />
         <div className="about-section">

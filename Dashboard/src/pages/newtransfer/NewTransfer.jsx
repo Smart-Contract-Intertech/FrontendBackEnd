@@ -64,9 +64,7 @@ const NewTransfer = (props) => {
             <Sidebar />
             <div className="newContainer">
                 <Navbar />
-                <div className="top">
-                    <h1>Yeni Yatırım</h1>
-                </div>
+                <h1>Yeni Yatırım</h1>
                 <div className="bottom">
                     <div className="right">
                         {Object.keys(formErrors).length === 0 && isSubmit? (<div className="ui message success"style={{fontWeight:"bold", color:"GrayText"}}>Yatırım Başarıyla İletildi!</div>) : 

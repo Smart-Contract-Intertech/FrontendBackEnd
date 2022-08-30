@@ -2,6 +2,7 @@ import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Sent from "@mui/icons-material/EastOutlined";
 import Taken from "@mui/icons-material/WestOutlined";
+import InfoIcon from '@mui/icons-material/Info';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -11,6 +12,19 @@ const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
+      <div className="top">
+        <Link to="/user" style={{ textDecoration: "none" }}>
+          <img
+          alt="Anasayfa"
+          src={Logo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          />
+          <span className="logo">MOIRA</span>
+        </Link>
+      </div>
+      <hr />
       <div className="center">
         <ul>
           <p className="title">Genel Görünüm</p>
@@ -31,6 +45,13 @@ const Sidebar = () => {
             <li>
               <Taken className="icon" />
               <span>Bana Gönderilenler</span>
+            </li>
+          </Link>
+          <p className="title">Hakkımızda</p>
+          <Link to="/about" style={{ textDecoration: "none "}}>
+            <li>
+              <InfoIcon className="icon" />
+              <span>Hakkımızda</span>
             </li>
           </Link>
         </ul>
