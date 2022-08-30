@@ -47,7 +47,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Erdem Çokatar</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>İstanbul Üniversitesi-Bilgisayar Mühendisliği(4. Sınıf)</p>
                 <p>erdemcokatar@gmail.com</p>
               </div>
             </div>
@@ -59,6 +59,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Mustafa Şenol</h2>
                 <p className="title">Yazılım Geliştirici</p>
+                <p>Gebze Teknik Üniversitesi-Bilgisayar Mühendisliği(4. Sınıf)</p>
                 <p>mstfsnol@hotmail.com</p>
               </div>
             </div>
@@ -70,7 +71,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Ali Murat Kuşlu</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Türk Alman Üniversitesi-Bilgisayar Mühendisliği(3. Sınıf)</p>
                 <p>alimuratkuslu@gmail.com</p>        
               </div>
             </div>
@@ -83,7 +84,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Okan Torun</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Gebze Teknik Üniversitesi-Bilgisayar Mühendisliği(4. Sınıf)</p>
                 <p>torun.okn@gmail.com</p>          
               </div>
             </div>
@@ -95,7 +96,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Yüksel Erin</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>İstanbul Teknik Üniversitesi-Bilgisayar Mühendisliği-(4. Sınıf)</p>
                 <p>ykselerin@gmail.com</p>          
               </div>
             </div>
@@ -107,7 +108,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Samet Başaran</h2>
                 <p className="title">İş Analisti</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>İstanbul Teknik Üniversitesi-Endüstri Mühendisliği(4. Sınıf)</p>
                 <p>samet.8basaran@gmail.com</p>        
               </div>
             </div>
@@ -120,7 +121,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Berke Ayorak</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Kırıkkale Üniversitesi-Bilgisayar Mühendisliği(2. Sınıf)</p>
                 <p>berkeayorak@gmail.com</p>           
               </div>
             </div>
@@ -132,7 +133,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>Oğulcan Yusuf Akçay</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Ege Üniversitesi-Bilgisayar Mühendisliği(4. Sınıf)</p>
                 <p>ogyuak4@gmail.com</p>         
               </div>
             </div>
@@ -144,7 +145,7 @@ const AboutUs = () => {
               <div className="container">
                 <h2>İrem Çiloğlu</h2>
                 <p className="title">Yazılım Geliştirici</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Orta Doğu Teknik Üniversitesi KKK-Bilgisayar Mühendisliği(4. Sınıf)</p>
                 <p>irem-ciloglu@hotmail.com</p>          
               </div>
             </div>
