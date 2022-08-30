@@ -1,6 +1,4 @@
 import "./aboutus.scss";
-import leon from "../image/leon.png";
-import honda from "../image/honda.png";
 import Ali from "../image/ali.png";
 import Okan from "../image/okan.png";
 import Ogulcan from "../image/ogulcan.png";
@@ -8,6 +6,8 @@ import Samet from "../image/samet.png";
 import Irem from "../image/irem.png";
 import Erdem from "../image/erdem.png";
 import Mustafa from "../image/mustafa.png";
+import Yuksel from "../image/yuksel.png";
+import Berke from "../image/berke.png";
 import Anonim from "../image/anonim.jpg";
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
@@ -91,7 +91,7 @@ const AboutUs = () => {
 
           <div className="column">
             <div className="card">
-              <img src={Anonim} alt="" width="400" height="350" />
+              <img src={Yuksel} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Yüksel Erin</h2>
                 <p className="title">Yazılım Geliştirici</p>
@@ -116,7 +116,7 @@ const AboutUs = () => {
         <div className="row">
           <div className="column">
             <div className="card">
-              <img src={Anonim} alt="" width="400" height="350" />
+              <img src={Berke} alt="" width="400" height="350" />
               <div className="container">
                 <h2>Berke Ayorak</h2>
                 <p className="title">Yazılım Geliştirici</p>
